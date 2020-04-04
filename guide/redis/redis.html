@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Redis从入门到精通 | SENLAY</title>
+    <meta name="description" content="众木成林">
+    <link rel="icon" href="/senlay.github.io/img/logo.ico">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    
+    <link rel="preload" href="/senlay.github.io/assets/css/0.styles.0f315599.css" as="style"><link rel="preload" href="/senlay.github.io/assets/js/app.7b37906d.js" as="script"><link rel="preload" href="/senlay.github.io/assets/js/4.98832570.js" as="script"><link rel="preload" href="/senlay.github.io/assets/js/2.a115eab3.js" as="script"><link rel="preload" href="/senlay.github.io/assets/js/63.5c80d0e5.js" as="script"><link rel="prefetch" href="/senlay.github.io/assets/js/1.2d95be01.js"><link rel="prefetch" href="/senlay.github.io/assets/js/10.e8c7dd8e.js"><link rel="prefetch" href="/senlay.github.io/assets/js/11.4c668a1e.js"><link rel="prefetch" href="/senlay.github.io/assets/js/12.8026e37d.js"><link rel="prefetch" href="/senlay.github.io/assets/js/13.f1a89c80.js"><link rel="prefetch" href="/senlay.github.io/assets/js/14.00e291e2.js"><link rel="prefetch" href="/senlay.github.io/assets/js/15.03f64819.js"><link rel="prefetch" href="/senlay.github.io/assets/js/16.31af0166.js"><link rel="prefetch" href="/senlay.github.io/assets/js/17.fd10f5f7.js"><link rel="prefetch" href="/senlay.github.io/assets/js/18.62e9f76a.js"><link rel="prefetch" href="/senlay.github.io/assets/js/19.3d984c85.js"><link rel="prefetch" href="/senlay.github.io/assets/js/20.63e4e5ce.js"><link rel="prefetch" href="/senlay.github.io/assets/js/21.53f7bcf7.js"><link rel="prefetch" href="/senlay.github.io/assets/js/22.8cf6e2b1.js"><link rel="prefetch" href="/senlay.github.io/assets/js/23.d6484eec.js"><link rel="prefetch" href="/senlay.github.io/assets/js/24.9fcb4b21.js"><link rel="prefetch" href="/senlay.github.io/assets/js/25.8808f7d2.js"><link rel="prefetch" href="/senlay.github.io/assets/js/26.29215ba7.js"><link rel="prefetch" href="/senlay.github.io/assets/js/27.93c85aeb.js"><link rel="prefetch" href="/senlay.github.io/assets/js/28.ae29d7e9.js"><link rel="prefetch" href="/senlay.github.io/assets/js/29.e86d9a5f.js"><link rel="prefetch" href="/senlay.github.io/assets/js/30.65fe68b9.js"><link rel="prefetch" href="/senlay.github.io/assets/js/31.74859d89.js"><link rel="prefetch" href="/senlay.github.io/assets/js/32.78e565f3.js"><link rel="prefetch" href="/senlay.github.io/assets/js/33.7ce698bb.js"><link rel="prefetch" href="/senlay.github.io/assets/js/34.33f95e1d.js"><link rel="prefetch" href="/senlay.github.io/assets/js/35.92c1557d.js"><link rel="prefetch" href="/senlay.github.io/assets/js/36.e683b955.js"><link rel="prefetch" href="/senlay.github.io/assets/js/37.a515cf62.js"><link rel="prefetch" href="/senlay.github.io/assets/js/38.d1e9a811.js"><link rel="prefetch" href="/senlay.github.io/assets/js/39.92fc2c39.js"><link rel="prefetch" href="/senlay.github.io/assets/js/40.cda41d0f.js"><link rel="prefetch" href="/senlay.github.io/assets/js/41.edf05d24.js"><link rel="prefetch" href="/senlay.github.io/assets/js/42.5efd802d.js"><link rel="prefetch" href="/senlay.github.io/assets/js/43.9a0289af.js"><link rel="prefetch" href="/senlay.github.io/assets/js/44.323d7b48.js"><link rel="prefetch" href="/senlay.github.io/assets/js/45.9247e161.js"><link rel="prefetch" href="/senlay.github.io/assets/js/46.917a5998.js"><link rel="prefetch" href="/senlay.github.io/assets/js/47.e728bb43.js"><link rel="prefetch" href="/senlay.github.io/assets/js/48.e88b6285.js"><link rel="prefetch" href="/senlay.github.io/assets/js/49.759b5011.js"><link rel="prefetch" href="/senlay.github.io/assets/js/5.f4a7252a.js"><link rel="prefetch" href="/senlay.github.io/assets/js/50.6f5672bf.js"><link rel="prefetch" href="/senlay.github.io/assets/js/51.707900e4.js"><link rel="prefetch" href="/senlay.github.io/assets/js/52.bcc8ffbd.js"><link rel="prefetch" href="/senlay.github.io/assets/js/53.fd2966e4.js"><link rel="prefetch" href="/senlay.github.io/assets/js/54.b81bbf2d.js"><link rel="prefetch" href="/senlay.github.io/assets/js/55.8eae09b5.js"><link rel="prefetch" href="/senlay.github.io/assets/js/56.ff29ad46.js"><link rel="prefetch" href="/senlay.github.io/assets/js/57.ba08710a.js"><link rel="prefetch" href="/senlay.github.io/assets/js/58.5fb44ed4.js"><link rel="prefetch" href="/senlay.github.io/assets/js/59.cb51b2c3.js"><link rel="prefetch" href="/senlay.github.io/assets/js/6.9fc2c73f.js"><link rel="prefetch" href="/senlay.github.io/assets/js/60.77aaa01c.js"><link rel="prefetch" href="/senlay.github.io/assets/js/61.1c532657.js"><link rel="prefetch" href="/senlay.github.io/assets/js/62.d753eac3.js"><link rel="prefetch" href="/senlay.github.io/assets/js/64.21a55747.js"><link rel="prefetch" href="/senlay.github.io/assets/js/65.ea4d1c50.js"><link rel="prefetch" href="/senlay.github.io/assets/js/66.b2931912.js"><link rel="prefetch" href="/senlay.github.io/assets/js/67.d0fa5d1c.js"><link rel="prefetch" href="/senlay.github.io/assets/js/68.136433b1.js"><link rel="prefetch" href="/senlay.github.io/assets/js/69.a0ab999a.js"><link rel="prefetch" href="/senlay.github.io/assets/js/7.7cfd5da3.js"><link rel="prefetch" href="/senlay.github.io/assets/js/70.d67d915a.js"><link rel="prefetch" href="/senlay.github.io/assets/js/71.9627a47e.js"><link rel="prefetch" href="/senlay.github.io/assets/js/72.9db21b09.js"><link rel="prefetch" href="/senlay.github.io/assets/js/73.5be3e5e2.js"><link rel="prefetch" href="/senlay.github.io/assets/js/74.e1a4a0e5.js"><link rel="prefetch" href="/senlay.github.io/assets/js/75.3d6543b8.js"><link rel="prefetch" href="/senlay.github.io/assets/js/76.700a22b2.js"><link rel="prefetch" href="/senlay.github.io/assets/js/77.6de14174.js"><link rel="prefetch" href="/senlay.github.io/assets/js/78.264d827a.js"><link rel="prefetch" href="/senlay.github.io/assets/js/79.f3f454f0.js"><link rel="prefetch" href="/senlay.github.io/assets/js/8.e6e200a2.js"><link rel="prefetch" href="/senlay.github.io/assets/js/80.80de905d.js"><link rel="prefetch" href="/senlay.github.io/assets/js/81.3f588dd5.js"><link rel="prefetch" href="/senlay.github.io/assets/js/82.cef4373c.js"><link rel="prefetch" href="/senlay.github.io/assets/js/9.2721dc7f.js">
+    <link rel="stylesheet" href="/senlay.github.io/assets/css/0.styles.0f315599.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div><div class="theme-container"><div><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/senlay.github.io/" class="home-link router-link-active"><img src="/senlay.github.io/img/senlay.jpg" alt="SENLAY" class="logo"> <span class="site-name">SENLAY</span></a> <div class="links"><div class="color-picker"><a href="#" class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="theme-options"><!----> <div class="dark-theme-options toggle-option"><label for="dark-theme-toggle">Enable Dark Theme?</label> <input id="dark-theme-toggle" type="checkbox" checked="checked"></div></div></div></div> <div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/senlay.github.io/" class="nav-link"><i class="iconfont undefined"></i>
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      分类
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/扫一扫，加微信.html" class="nav-link"><i class="iconfont undefined"></i>
+  扫一扫，加微信
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/diary.html" class="nav-link"><i class="iconfont undefined"></i>
+  diary
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/conception.html" class="nav-link"><i class="iconfont undefined"></i>
+  conception
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/dva.html" class="nav-link"><i class="iconfont undefined"></i>
+  dva
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/docker.html" class="nav-link"><i class="iconfont undefined"></i>
+  docker
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/java.html" class="nav-link"><i class="iconfont undefined"></i>
+  java
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/flowable.html" class="nav-link"><i class="iconfont undefined"></i>
+  flowable
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/git.html" class="nav-link"><i class="iconfont undefined"></i>
+  git
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/linux.html" class="nav-link"><i class="iconfont undefined"></i>
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/jboss.html" class="nav-link"><i class="iconfont undefined"></i>
+  jboss
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/react.html" class="nav-link"><i class="iconfont undefined"></i>
+  react
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/layui.html" class="nav-link"><i class="iconfont undefined"></i>
+  layui
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/js.html" class="nav-link"><i class="iconfont undefined"></i>
+  js
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/jdbc.html" class="nav-link"><i class="iconfont undefined"></i>
+  jdbc
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/mysql.html" class="nav-link"><i class="iconfont undefined"></i>
+  mysql
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/spring.html" class="nav-link"><i class="iconfont undefined"></i>
+  spring
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/redis.html" class="nav-link"><i class="iconfont undefined"></i>
+  redis
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/vue.html" class="nav-link"><i class="iconfont undefined"></i>
+  vue
+</a></li></ul></div></div><div class="nav-item"><a href="/senlay.github.io/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  标签
+</a></div><div class="nav-item"><a href="/senlay.github.io/timeLine/" class="nav-link"><i class="iconfont reco-date"></i>
+  时间轴
+</a></div><div class="nav-item"><a href="https://vuepress.vuejs.org" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  vuepress
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont undefined"></i>
+      友情链接
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/senlay/senlay.github.io" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://gitee.com/ylbs/dsl" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  gitee
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="http://tool.oschina.net/apidocs/apidoc?api=jdk_7u4" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  jdk-api
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://www.runoob.com/java/java-tutorial.html" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  java
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://cn.vuejs.org/v2/guide/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  vue
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="http://element-ui.cn/#/zh-CN/component/installation" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  element-ui
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://www.w3cschool.cn/wkspring/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  spring
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://www.runoob.com/design-pattern/design-pattern-tutorial.html" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  design-pattern
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></div></div><div class="nav-item"><a href="/senlay.github.io/about/" class="nav-link"><i class="iconfont undefined"></i>
+  关于我
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/senlay.github.io/" class="nav-link"><i class="iconfont undefined"></i>
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      分类
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/扫一扫，加微信.html" class="nav-link"><i class="iconfont undefined"></i>
+  扫一扫，加微信
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/diary.html" class="nav-link"><i class="iconfont undefined"></i>
+  diary
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/conception.html" class="nav-link"><i class="iconfont undefined"></i>
+  conception
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/dva.html" class="nav-link"><i class="iconfont undefined"></i>
+  dva
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/docker.html" class="nav-link"><i class="iconfont undefined"></i>
+  docker
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/java.html" class="nav-link"><i class="iconfont undefined"></i>
+  java
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/flowable.html" class="nav-link"><i class="iconfont undefined"></i>
+  flowable
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/git.html" class="nav-link"><i class="iconfont undefined"></i>
+  git
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/linux.html" class="nav-link"><i class="iconfont undefined"></i>
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/jboss.html" class="nav-link"><i class="iconfont undefined"></i>
+  jboss
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/react.html" class="nav-link"><i class="iconfont undefined"></i>
+  react
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/layui.html" class="nav-link"><i class="iconfont undefined"></i>
+  layui
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/js.html" class="nav-link"><i class="iconfont undefined"></i>
+  js
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/jdbc.html" class="nav-link"><i class="iconfont undefined"></i>
+  jdbc
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/mysql.html" class="nav-link"><i class="iconfont undefined"></i>
+  mysql
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/spring.html" class="nav-link"><i class="iconfont undefined"></i>
+  spring
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/redis.html" class="nav-link"><i class="iconfont undefined"></i>
+  redis
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/vue.html" class="nav-link"><i class="iconfont undefined"></i>
+  vue
+</a></li></ul></div></div><div class="nav-item"><a href="/senlay.github.io/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  标签
+</a></div><div class="nav-item"><a href="/senlay.github.io/timeLine/" class="nav-link"><i class="iconfont reco-date"></i>
+  时间轴
+</a></div><div class="nav-item"><a href="https://vuepress.vuejs.org" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  vuepress
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont undefined"></i>
+      友情链接
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/senlay/senlay.github.io" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://gitee.com/ylbs/dsl" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  gitee
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="http://tool.oschina.net/apidocs/apidoc?api=jdk_7u4" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  jdk-api
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://www.runoob.com/java/java-tutorial.html" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  java
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://cn.vuejs.org/v2/guide/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  vue
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="http://element-ui.cn/#/zh-CN/component/installation" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  element-ui
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://www.w3cschool.cn/wkspring/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  spring
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://www.runoob.com/design-pattern/design-pattern-tutorial.html" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  design-pattern
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></div></div><div class="nav-item"><a href="/senlay.github.io/about/" class="nav-link"><i class="iconfont undefined"></i>
+  关于我
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Vue</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Java</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Jboss</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Flowable</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>Redis</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/senlay.github.io/guide/redis/redis.html" class="active sidebar-link">redis从入门到精通</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>git</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Mysql</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>js</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>layui</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>react+antd由浅入深</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>dva</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>spring</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>docker</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>springCloud</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>diary</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>conception</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>conception</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <div><main class="page reco-hide"> <div class="page-title"><h1>Redis从入门到精通</h1> <hr> <div data-v-0b496ca7><i class="iconfont reco-account" data-v-0b496ca7><span data-v-0b496ca7>senlay</span></i> <i class="iconfont reco-date" data-v-0b496ca7><span data-v-0b496ca7>2019-9-30</span></i> <span id="/senlay.github.io/guide/redis/redis.html" data-flag-title="Your Article Title" class="leancloud-visitors" data-v-2e99e05a data-v-0b496ca7><i class="iconfont reco-eye" style="margin-right: .5rem" data-v-2e99e05a></i> <a class="leancloud-visitors-count" style="font-size:.9rem;font-weight:normal;color:#999;" data-v-2e99e05a></a></span> <i class="iconfont reco-tag tags" data-v-0b496ca7><span class="tag-item" data-v-0b496ca7>
+      node
+    </span></i></div></div> <div class="content__default"><h4 id="redis"><a href="#redis" aria-hidden="true" class="header-anchor">#</a> Redis</h4> <ul><li>redis是一个开源的key-value数据库。它又经常被认为是一个数据结构服务器。因为它的value不仅包括基本的string类型还有 list,set ,sorted set和hash类型。当然这些类型的元素也都是string类型。也就是说list,set这些集合类型也只能包含 string 类型。</li> <li>你可以在这些类型上做很多原子性的操作。比如对一个字符value追加字符串（APPEND命令）。加加或者减减一个数字字符串(INCR命令，当 然是按整数处理的).可以对list类型进行push,或者pop元素操作（可以模拟栈和队列）。对于set类型可以进行一些集合相关操作</li></ul> <h4 id="redis的适用场景"><a href="#redis的适用场景" aria-hidden="true" class="header-anchor">#</a> redis的适用场景</h4> <ul><li>数据缓存，快速访问</li> <li>取最新N个数据的操作</li> <li>排行榜应用，取top排名</li> <li>需要精准设置过期时间的操作</li> <li>计算器的操作</li> <li>构建队列系统</li> <li>unique操作</li></ul> <h4 id="redis使用规范"><a href="#redis使用规范" aria-hidden="true" class="header-anchor">#</a> redis使用规范</h4> <ul><li>redis数据类型选择</li> <li>存储容量选择</li> <li>key命名规范</li></ul> <h4 id="redis-常用命令"><a href="#redis-常用命令" aria-hidden="true" class="header-anchor">#</a> redis 常用命令</h4> <ul><li>set key 字符串</li> <li>get key</li></ul> <h4 id="注意事项"><a href="#注意事项" aria-hidden="true" class="header-anchor">#</a> 注意事项</h4> <ul><li>基于key值命名规范,尽量减少string类型的使用</li> <li>在使用redis各类命令时,需关注相关命令的时间复杂度及注意事项</li> <li>合理使用redis内置压缩机制</li> <li>使用json数据格式存储对象详细信息</li></ul> <h4 id="订单防重逻辑"><a href="#订单防重逻辑" aria-hidden="true" class="header-anchor">#</a> 订单防重逻辑</h4> <ul><li>订单创建，首先检查该笔订单的缓存是否存在，如果检查不通过，直接返回
+<ul><li><ol><li>根据订单号查询该笔订单的状态，如果订单号为空直接返回N</li></ol></li> <li><ol start="2"><li>创建防重标识key,根据该标识（业务场景）和订单号创建分布式防重锁，如果锁成功则返回null否则返回N</li></ol></li> <li><ol start="3"><li>如果查询到的订单状态不为空则该笔订单正在创建中，防重校验不通过直接返回</li></ol></li></ul></li> <li>如果缓存检查通过，则生产订单号，生产失败则直接返回</li> <li>如果缓存检查通过，则获取报文中传过来的订单，根据报文订单号去数据库查询订单，
+如果查询到，并且满足订单总状态校验通过，且回滚资源成功，且删除已存在订单成功则防重校验通过。</li></ul> <h4 id="分布式锁"><a href="#分布式锁" aria-hidden="true" class="header-anchor">#</a> 分布式锁</h4> <ul><li>【什么情况下需要使用分布式锁：保证数据的最终一致性，有的时候，我们需要保证一个方法在同一时间内只能被同一个线程执行。】</li></ul> <h5 id="基于数据库实现分布式锁"><a href="#基于数据库实现分布式锁" aria-hidden="true" class="header-anchor">#</a> 基于数据库实现分布式锁</h5> <ul><li>创建一张锁表，然后通过操作该表中的数据来实现。</li> <li>当我们需要锁住否个方法或者资源时，就在表中新增一条数据，想要释放锁的时候就删除这条记录</li> <li>创建这样一张数据库表
+&gt; CREAT TABLE 'methodLock'(
+'id' int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+'method_name' varchar(64) NOT NULL DEFAULT '' COMMENT '锁定的方法名'
+'desc' varchar(1024) NOT NULL DEFAULT '备注信息'
+'update_time' timestamp NOT NULL CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '保存数据的时间，自动生成',
+RIMARY KEY('ID'),
+UNIQUE KEY 'uidx_method_name'('method_name')  USING BTREE
+) ENGINE = InnoDB DEFAULT CHAREST = utf-8 COMMENT = '锁定中的方法';
+<ul><li>当我们想要锁住否个方法时：执行以下sql:
+<ul><li>INSERT INTO methodLock(method_name, desc) values ('method_name', 'desc');
+因为我们队method_name做了唯一性约束，这里如果有多个请求同时提交到数据库的话，数据库可以保证只有一个操作可以成功，那么我们就可以
+认为操作成功的那个线程获得了该方法的锁，可以执行方法具体内容。
+当方法执行完毕想要释放锁的话，执行以下sql：</li> <li>delete FROM methodLock where method_name = 'method_name';</li></ul></li> <li>缺点：
+<ul><li>这把锁强依赖于数据库的可用性，数据库是一个单点，一旦数据库挂掉，会导致业务系统不可用。</li> <li>这把锁没有失效时间，一但解锁操作失败，会导致锁记录一直在数据库中，其他线程无法获取到锁。</li> <li>这把锁只能是非阻塞的，因为数据库的insert操作，一但插入失败就会直接报错。没有获得锁的线程并不会进入排队队列，想要再次获得锁就要再次出发获得锁的操作</li> <li>这把锁是非重入的，同一线程在没有释放锁之前无法再次获得该锁。因为数据中数据已经存在了。
+【可重入锁：】
+【数据库的可用性：】
+【数据库是一个单点：】</li></ul></li></ul></li></ul> <h5 id="基于缓存实现的分布式锁"><a href="#基于缓存实现的分布式锁" aria-hidden="true" class="header-anchor">#</a> 基于缓存实现的分布式锁</h5> <pre><code>- 相比较于基于数据库实现分布式锁的方案来说，基于缓存来实现在性能方面会更好一些。而且很多缓存是可以用集群来部署的，可以解决单点问题。
+- 目前有很多成熟的缓存产品，包括redis，memcacheed以及我们公司内部的Tair
+- 这里以Tair为例来分析下使用缓存来实现分布式锁的方案。
+- 基于Tair的实现分布式锁其实和Redis类似，其中主要的实现方式是使用TairManager.put方法来实现。
+
+ ``` java
+    public boolean tryLock(String key){
+        ResultCode code = IdbTairMapper.put(NAMESPACE, KEY, 'this is a lock.', 2, 0);
+        if(ResultCode.success.equals(code)){
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public boolean unLock(){
+        IdbTairMapper.invalid(NAMESPACE, key);
+    }
+ ```
+ - 缺点：
+    - 这把锁没有失效时间，一旦解锁操作失败，就会导致锁记录一直在tair中，其他线程无法再获得锁
+    - 这把锁只能是非阻塞的，无论是成功还是失败都直接返回
+    - 这把锁是非重入的，一个线程获得锁之后，在释放锁之前，无法再次获得该锁，因为使用到key在tair中已经存在，无法在执行put操作
+ - 优点
+    - 可以使用缓存代替数据库实现分布式锁，这个可以提供更好的性能，同时，很多缓存服务都是集群部署的，可以避免单点问题，并且很多缓存服务
+        都提供了用来实现分布式锁的方法，比如Tair的put方法，redis的setnx方法等，并且这些缓存服务也提供了对数据过期自动删除的功能支持，
+        可以直接设置超时时间来控制锁的释放
+    - 使用缓存实现分布式锁的优点
+    - 性能好，实现起来较方便
+    - 使用缓存实现分布式锁的优点
+    - 通过超时时间来控制锁的失效时间并不是十分的靠谱。
+</code></pre> <h5 id="我们代码中使用redis来实现分布式锁的：https-blog-csdn-net-weixin-39471249-article-details-79121291"><a href="#我们代码中使用redis来实现分布式锁的：https-blog-csdn-net-weixin-39471249-article-details-79121291" aria-hidden="true" class="header-anchor">#</a> 我们代码中使用redis来实现分布式锁的：https://blog.csdn.net/weixin_39471249/article/details/79121291</h5> <pre><code>- redis.setNx(final String key, final String value, final long seconds)
+    - 只在键 key 不存在的情况下， 将键 key 的值设置为 value 。
+
+      若键 key 已经存在， 则 SETNX 命令不做任何动作。
+
+      SETNX 是『SET if Not eXists』(如果不存在，则 SET)的简写。
+    - 返回值
+        命令在设置成功时返回 1 ， 设置失败时返回 0 。
+</code></pre> <h5 id="基于zookeeper实现的分布式锁"><a href="#基于zookeeper实现的分布式锁" aria-hidden="true" class="header-anchor">#</a> 基于Zookeeper实现的分布式锁</h5> <pre><code>- 基于Zookeeper临时有序节点可以实现分布式锁。
+大致思想即为：每个客户端对某个方法加锁时，在zookeeper上的与该方法对应的指定节点的目录下，生成一个唯一的瞬时有序节点。判断是否获取锁的方式
+很简单，只需要判断有序节点中序号最小的一个。当释放锁的时候，只需要将这个瞬时几点删除即可。同时，其可以避免服务器宕机导致的锁无法释放，、
+而产生的死锁问题。
+来看下zookeeper能不能解决前面提到的问题：
+    - 锁无法释放？使用Zookeeper可以有效的解决锁无法释放的问题，因为在创建锁的时候，客户端会在ZK中创建一个临时节点，一旦客户端获取到锁
+        之后突然挂掉（Session连接断开），那么这个临时节点就会自动删除掉。其他客户端就可以再次获得锁。
+    - 非阻塞锁？使用Zookeeper可以实现阻塞的锁，客户端可以通过在ZK中创建顺序节点，并且在节点上绑定监听器，一旦节点有变化，Zookeeper
+        会通知客户端，客户端可以检查自己创建的节点是不是当前所有节点中序号最小的，如果是，那么自己就获取到锁，便可以执行业务逻辑了。
+    - 不可重入？使用Zookeeper也可以有效的解决不可重入的问题，客户端在创建节点的时候，把当前客户端的主机信息和线程信息直接写入到节
+        点中，下次想要获取锁的时候和当前最小的节点中的数据比对一下就可以了。如果和自己的信息一样，那么自己直接获取到锁，如果不一样就再
+        创建一个临时的顺序节点，参与排队。
+    - 单点问题？使用Zookeeper可以有效的解决单点问题，ZK是集群部署的，只要集群中有半数以上的机器存活，就可以对外提供服务。
+    - 可以直接使用zookeeper第三方库Curator客户端，这个客户端中封装了一个可重入的锁服务。
+</code></pre> <h4 id="幂等的概念。不管调用多少次返回结果都是一样的"><a href="#幂等的概念。不管调用多少次返回结果都是一样的" aria-hidden="true" class="header-anchor">#</a> 幂等的概念。不管调用多少次返回结果都是一样的</h4> <ul><li>dubbo具备重试功能，当进行一次方法调用时，如果调用过程出现可重试的异常（如网络异常，调用方资源不足），并且允许重试（retryTimes&gt;0），那么将发起重试。</li> <li>dubbo在发起一次调用时，如果设置了retryTimes&gt;0，那么可能会发起多次请求，在发起每次调用请求时，请求的timeout是总超时时间：(设置的retry次数+1)<em>设置的timeout，以避免每次请求都超时的情况。（比如单次请求实际要花费50ms，而timeout设置为40ms，重试次数设置为3次。如果单次请求timeout设置为40ms，那么虽然重试了多次，但是每次都超时，总调用时间花费了40ms×4，依然没有得到返回结果。如果单次请求的timeout设置为40ms</em>4，那么将会在第二次重试时，收到第一次请求的返回）
+对于非幂等的服务方法（不允许重复调用），dubbo在provider端有严格的防重复调用的机制。但是，请一定要注意，在服务配置时，应该合理的设置方法的幂等性，一定要避免业务上非幂等的方法被设置为幂等，并且允许重试的情况。</li></ul> <h4 id="拆包合包"><a href="#拆包合包" aria-hidden="true" class="header-anchor">#</a> 拆包合包</h4> <p>所谓拆包合包的概念是指：门店收取A商品后，拆包成B商品进行售卖。或者B商品合包成A商品售卖。譬如：</p> <p>订货的时候订购的是整箱矿泉水，售卖的时候是一瓶瓶卖，就需要拆包。</p> <p>一些生鲜果蔬合成标准件进行售卖等等</p> <h4 id="缓存击穿："><a href="#缓存击穿：" aria-hidden="true" class="header-anchor">#</a> 缓存击穿：</h4> <p>恶意请求不存在的key,并且请求量巨大，对后台造成很大的压力。</p> <blockquote><p>如何避免呢?
+对查询为空的情况也进行缓存，缓存时间设置短一点；对一定不存在的key进行过滤</p></blockquote> <ul><li><p>缓存雪崩：
+当缓存服务器重启或者大量缓存在某个时间段失效，这个时候，会给后端服务器带来很大压力，甚至导致缓存雪崩。</p></li> <li><p>1：在缓存失效后，通过加锁或者队列来控制读数据库写缓存的线程数量。比如对某个key只允许一个线程查询数据和写缓存，其他线程等待。</p></li> <li><p>2：做二级缓存，A1为原始缓存，A2为拷贝缓存，A1失效时，可以访问A2，A1缓存失效时间设置为短期，A2设置为长期</p></li> <li><p>3：不同的key，设置不同的过期时间，让缓存失效的时间点尽量均匀。</p></li></ul> <h4 id="redis-利用list实现队列"><a href="#redis-利用list实现队列" aria-hidden="true" class="header-anchor">#</a> redis 利用list实现队列</h4> <p><img src="/img/redis_q.png" alt=""></p> <ul><li>lpush</li></ul> <blockquote><p>在指定Key所关联的List Value的头部插入参数中给出的所有Values,如果该Key不存在，该命令将在插入之前创建一个与该Key关联的空链表
+之后再将数据从链表的头部插入。如果该键的Value不是链表类型，该命令将返回相关的错误信息。
+例如： jedis.lpush(&quot;list&quot;, 1);</p></blockquote> <ul><li>rpop</li></ul> <blockquote><p>相当于将指定key关联的list中的元素弹出来，即：返回并弹出指定Key关联的链表中的最后一个元素，即尾部元素，。如果该Key不存，返回nil。</p></blockquote> <ul><li>rpoplpush</li></ul> <blockquote><p>弹出来再发送到目的地list，即：原子性的从与source键关联的链表尾部弹出一个元素，同时再将弹出的元素插入到与destination键关联的链表的头部。
+如果source键不存在，该命令将返回nil，同时不再做任何其它的操作了。如果source和destination是同一个键，则相当于原子性的将其关联链表中的尾部元素移到该链表的头部。</p></blockquote> <ul><li>SETNX key value</li></ul> <blockquote><p>如果指定的Key不存在，则设定该Key持有指定字符串Value，此时其效果等价于SET命令。相反，如果该Key已经存在，
+该命令将不做任何操作并返回。
+例如： setnx key1 1 -&gt; 1代表true，再次setnx key1 1后将返回0，什么都不做</p></blockquote> <ul><li>HSET key field value</li></ul> <blockquote><p>为指定的Key设定Field/Value对，如果Key不存在，该命令将创建新Key以参数中的Field/Value对，如果参数中的Field在该Key中已经存在，则用新值覆盖其原有值。</p></blockquote> <ul><li>HGET key field</li></ul> <blockquote><p>返回指定Key中指定Field的关联值。</p></blockquote> <ul><li>lrange</li></ul> <blockquote><p>时间复杂度中的S为start参数表示的偏移量，N表示元素的数量。该命令的参数start和end都是0-based。即0表示链表头部(leftmost)的第一个元素。其中start的值也可以为负值，-1将表示链表中的最后一个元素，即尾部元素，-2表示倒数第二个并以此类推。该命令在获取元素时，start和end位置上的元素也会被取出。如果start的值大于链表中元素的数量，空链表将会被返回。如果end的值大于元素的数量，该命令则获取从start(包括start)开始，链表中剩余的所有元素。	
+如：lrange(key, start, end)</p></blockquote> <div class="language- extra-class"><pre class="language-text"><code>package com.dtree.redis;
+
+import redis.clients.jedis.Jedis;
+
+import java.util.Random;
+import java.util.UUID;
+
+public class RedisQ {
+
+    public static void main(String[] args) throws Exception {
+
+        Thread tserver = new Thread() {
+            Jedis jedis = new Jedis(&quot;127.0.0.1&quot;, 6379);
+
+            @Override
+            public void run() {
+                Random random = new Random();
+                while (true) {
+                    try {
+                        Thread.sleep(random.nextInt(600) + 600);
+                        // 模拟生成一个任务
+                        UUID uuid = UUID.randomUUID();
+                        //将任务插入任务队列：taskqueue
+                        // 在指定Key所关联的List Value的头部插入参数中给出的所有Values。
+                        // 如果该Key不存在，该命令将在插入之前创建一个与该Key关联的空链表，
+                        // 之后再将数据从链表的头部插入。如果该键的Value不是链表类型，该命令将返回相关的错误信息。
+                        jedis.lpush(&quot;originQueue&quot;, uuid.toString());
+                        System.out.println(&quot;插入了一个新的任务： &quot; + uuid);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        };
+
+        Thread tclient = new Thread() {
+            Jedis jedis = new Jedis(&quot;127.0.0.1&quot;, 6379);
+
+            @Override
+            public void run() {
+                Random random = new Random();
+                while (true) {
+                    //从任务队列&quot;originQueue&quot;中获取一个任务，并将该任务放入暂存队列&quot;tmpQueue&quot;
+                    String taskid = jedis.rpoplpush(&quot;originQueue&quot;, &quot;tmpQueue&quot;);
+                    // 处理任务----纯属业务逻辑，模拟一下：睡觉
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    //模拟成功和失败的偶然现象
+                    if (random.nextInt(13) % 7 == 0) {// 模拟失败的情况,概率为2/13
+                        // 原子性的从与source键关联的链表尾部弹出一个元素，
+                        // 同时再将弹出的元素插入到与destination键关联的链表的头部。
+                        // 如果source键不存在，该命令将返回nil，同时不再做任何其它的操作了。
+                        // 如果source和destination是同一个键，则相当于原子性的将其关联链表中的尾部元素移到该链表的头部。
+                        jedis.rpoplpush(&quot;tmpQueue&quot;, &quot;destinationQueue&quot;); //将本次处理失败的任务从暂存队列&quot;tmp-queue&quot;中，弹回任务队列&quot;task-queue&quot;
+                        System.out.println(taskid + &quot;处理失败，被弹回任务队列&quot;);
+                    } else {// 模拟成功的情况
+                        // 返回并弹出指定Key关联的链表中的最后一个元素，即尾部元素，。如果该Key不存，返回nil
+                        jedis.rpop(&quot;tmpQueue&quot;); // 将本次任务从暂存队列&quot;tmpQueue&quot;中清除
+                        System.out.println(taskid + &quot;处理成功，被清除&quot;);
+                    }
+                }
+            }
+        };
+
+
+        // 启动一个生产者线程，模拟任务的产生
+        tserver.start();
+        Thread.sleep(15000);
+        //启动一个线程者线程，模拟任务的处理
+        tclient.start();
+        //主线程休眠
+        Thread.sleep(Long.MAX_VALUE);
+    }
+
+}
+
+
+// 线程池-生产者
+private static void coolProduce() {
+       final Jedis jedis = new Jedis(&quot;127.0.0.1&quot;, 6379);
+        ThreadPoolDemo.executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                Random random = new Random();
+                while (true) {
+                    try {
+                        Thread.sleep(random.nextInt(600) + 600);
+                        // 模拟生成一个任务
+                        UUID uuid = UUID.randomUUID();
+                        Map map = new HashMap&lt;&gt;();
+                        map.put(uuid,uuid);
+                        //将任务插入任务队列：taskqueue
+                        // 在指定Key所关联的List Value的头部插入参数中给出的所有Values。
+                        // 如果该Key不存在，该命令将在插入之前创建一个与该Key关联的空链表，
+                        // 之后再将数据从链表的头部插入。如果该键的Value不是链表类型，该命令将返回相关的错误信息。
+                        jedis.lpush(&quot;originQueue&quot;, JSON.toJSONString(map));
+                        System.out.println(&quot;插入了一个新的任务： &quot; + uuid);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+
+            }
+        });
+    }
+    
+// 线程池-消费者
+   private static void coolConsume() {
+       final Jedis jedis = new Jedis(&quot;127.0.0.1&quot;, 6379);
+        ThreadPoolDemo.executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                Random random = new Random();
+                while (true) {
+                    //从任务队列&quot;originQueue&quot;中获取一个任务，并将该任务放入暂存队列&quot;tmpQueue&quot;
+                    String taskid = jedis.rpoplpush(&quot;originQueue&quot;, &quot;tmpQueue&quot;);
+                    // 处理任务----纯属业务逻辑，模拟一下：睡觉
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    //模拟成功和失败的偶然现象
+                    if (random.nextInt(13) % 7 == 0) {// 模拟失败的情况,概率为2/13
+                        // 原子性的从与source键关联的链表尾部弹出一个元素，
+                        // 同时再将弹出的元素插入到与destination键关联的链表的头部。
+                        // 如果source键不存在，该命令将返回nil，同时不再做任何其它的操作了。
+                        // 如果source和destination是同一个键，则相当于原子性的将其关联链表中的尾部元素移到该链表的头部。
+                        jedis.rpoplpush(&quot;tmpQueue&quot;, &quot;destinationQueue&quot;); //将本次处理失败的任务从暂存队列&quot;tmp-queue&quot;中，弹回任务队列&quot;task-queue&quot;
+                        System.out.println(taskid + &quot;处理失败，被弹回任务队列&quot;);
+                    } else {// 模拟成功的情况
+                        // 返回并弹出指定Key关联的链表中的最后一个元素，即尾部元素，。如果该Key不存，返回nil
+                        jedis.rpop(&quot;tmpQueue&quot;); // 将本次任务从暂存队列&quot;tmpQueue&quot;中清除
+                        System.out.println(taskid + &quot;处理成功，被清除&quot;);
+                    }
+                }
+            }
+        });
+    }
+
+
+</code></pre></div></div> <!----> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated: </span> <span class="time">12/29/2019, 11:46:55 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/senlay.github.io/guide/flowable/05-flowable.html" class="prev">
+          Flowable用例
+        </a></span> <span class="next"><a href="/senlay.github.io/guide/git/git.html">
+          git常用命令
+        </a>
+        →
+      </span></p></div> </main> <div class="valine-wrapper" data-v-0162251c><div id="valine" data-v-0162251c></div></div></div> <div class="back-to-ceiling" style="right:1rem;bottom:3rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;background-color:rgba(231, 234, 241,.5);display:none;" data-v-d0bfeaa4 data-v-d0bfeaa4><i class="iconfont reco-up" data-v-d0bfeaa4></i></div></div></div></div><div class="global-ui"></div></div>
+    <script src="/senlay.github.io/assets/js/app.7b37906d.js" defer></script><script src="/senlay.github.io/assets/js/4.98832570.js" defer></script><script src="/senlay.github.io/assets/js/2.a115eab3.js" defer></script><script src="/senlay.github.io/assets/js/63.5c80d0e5.js" defer></script>
+  </body>
+</html>

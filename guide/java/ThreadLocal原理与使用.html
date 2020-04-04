@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>ThreadLocal原理与使用 | SENLAY</title>
+    <meta name="description" content="众木成林">
+    <link rel="icon" href="/senlay.github.io/img/logo.ico">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    
+    <link rel="preload" href="/senlay.github.io/assets/css/0.styles.0f315599.css" as="style"><link rel="preload" href="/senlay.github.io/assets/js/app.7b37906d.js" as="script"><link rel="preload" href="/senlay.github.io/assets/js/4.98832570.js" as="script"><link rel="preload" href="/senlay.github.io/assets/js/2.a115eab3.js" as="script"><link rel="preload" href="/senlay.github.io/assets/js/28.ae29d7e9.js" as="script"><link rel="prefetch" href="/senlay.github.io/assets/js/1.2d95be01.js"><link rel="prefetch" href="/senlay.github.io/assets/js/10.e8c7dd8e.js"><link rel="prefetch" href="/senlay.github.io/assets/js/11.4c668a1e.js"><link rel="prefetch" href="/senlay.github.io/assets/js/12.8026e37d.js"><link rel="prefetch" href="/senlay.github.io/assets/js/13.f1a89c80.js"><link rel="prefetch" href="/senlay.github.io/assets/js/14.00e291e2.js"><link rel="prefetch" href="/senlay.github.io/assets/js/15.03f64819.js"><link rel="prefetch" href="/senlay.github.io/assets/js/16.31af0166.js"><link rel="prefetch" href="/senlay.github.io/assets/js/17.fd10f5f7.js"><link rel="prefetch" href="/senlay.github.io/assets/js/18.62e9f76a.js"><link rel="prefetch" href="/senlay.github.io/assets/js/19.3d984c85.js"><link rel="prefetch" href="/senlay.github.io/assets/js/20.63e4e5ce.js"><link rel="prefetch" href="/senlay.github.io/assets/js/21.53f7bcf7.js"><link rel="prefetch" href="/senlay.github.io/assets/js/22.8cf6e2b1.js"><link rel="prefetch" href="/senlay.github.io/assets/js/23.d6484eec.js"><link rel="prefetch" href="/senlay.github.io/assets/js/24.9fcb4b21.js"><link rel="prefetch" href="/senlay.github.io/assets/js/25.8808f7d2.js"><link rel="prefetch" href="/senlay.github.io/assets/js/26.29215ba7.js"><link rel="prefetch" href="/senlay.github.io/assets/js/27.93c85aeb.js"><link rel="prefetch" href="/senlay.github.io/assets/js/29.e86d9a5f.js"><link rel="prefetch" href="/senlay.github.io/assets/js/30.65fe68b9.js"><link rel="prefetch" href="/senlay.github.io/assets/js/31.74859d89.js"><link rel="prefetch" href="/senlay.github.io/assets/js/32.78e565f3.js"><link rel="prefetch" href="/senlay.github.io/assets/js/33.7ce698bb.js"><link rel="prefetch" href="/senlay.github.io/assets/js/34.33f95e1d.js"><link rel="prefetch" href="/senlay.github.io/assets/js/35.92c1557d.js"><link rel="prefetch" href="/senlay.github.io/assets/js/36.e683b955.js"><link rel="prefetch" href="/senlay.github.io/assets/js/37.a515cf62.js"><link rel="prefetch" href="/senlay.github.io/assets/js/38.d1e9a811.js"><link rel="prefetch" href="/senlay.github.io/assets/js/39.92fc2c39.js"><link rel="prefetch" href="/senlay.github.io/assets/js/40.cda41d0f.js"><link rel="prefetch" href="/senlay.github.io/assets/js/41.edf05d24.js"><link rel="prefetch" href="/senlay.github.io/assets/js/42.5efd802d.js"><link rel="prefetch" href="/senlay.github.io/assets/js/43.9a0289af.js"><link rel="prefetch" href="/senlay.github.io/assets/js/44.323d7b48.js"><link rel="prefetch" href="/senlay.github.io/assets/js/45.9247e161.js"><link rel="prefetch" href="/senlay.github.io/assets/js/46.917a5998.js"><link rel="prefetch" href="/senlay.github.io/assets/js/47.e728bb43.js"><link rel="prefetch" href="/senlay.github.io/assets/js/48.e88b6285.js"><link rel="prefetch" href="/senlay.github.io/assets/js/49.759b5011.js"><link rel="prefetch" href="/senlay.github.io/assets/js/5.f4a7252a.js"><link rel="prefetch" href="/senlay.github.io/assets/js/50.6f5672bf.js"><link rel="prefetch" href="/senlay.github.io/assets/js/51.707900e4.js"><link rel="prefetch" href="/senlay.github.io/assets/js/52.bcc8ffbd.js"><link rel="prefetch" href="/senlay.github.io/assets/js/53.fd2966e4.js"><link rel="prefetch" href="/senlay.github.io/assets/js/54.b81bbf2d.js"><link rel="prefetch" href="/senlay.github.io/assets/js/55.8eae09b5.js"><link rel="prefetch" href="/senlay.github.io/assets/js/56.ff29ad46.js"><link rel="prefetch" href="/senlay.github.io/assets/js/57.ba08710a.js"><link rel="prefetch" href="/senlay.github.io/assets/js/58.5fb44ed4.js"><link rel="prefetch" href="/senlay.github.io/assets/js/59.cb51b2c3.js"><link rel="prefetch" href="/senlay.github.io/assets/js/6.9fc2c73f.js"><link rel="prefetch" href="/senlay.github.io/assets/js/60.77aaa01c.js"><link rel="prefetch" href="/senlay.github.io/assets/js/61.1c532657.js"><link rel="prefetch" href="/senlay.github.io/assets/js/62.d753eac3.js"><link rel="prefetch" href="/senlay.github.io/assets/js/63.5c80d0e5.js"><link rel="prefetch" href="/senlay.github.io/assets/js/64.21a55747.js"><link rel="prefetch" href="/senlay.github.io/assets/js/65.ea4d1c50.js"><link rel="prefetch" href="/senlay.github.io/assets/js/66.b2931912.js"><link rel="prefetch" href="/senlay.github.io/assets/js/67.d0fa5d1c.js"><link rel="prefetch" href="/senlay.github.io/assets/js/68.136433b1.js"><link rel="prefetch" href="/senlay.github.io/assets/js/69.a0ab999a.js"><link rel="prefetch" href="/senlay.github.io/assets/js/7.7cfd5da3.js"><link rel="prefetch" href="/senlay.github.io/assets/js/70.d67d915a.js"><link rel="prefetch" href="/senlay.github.io/assets/js/71.9627a47e.js"><link rel="prefetch" href="/senlay.github.io/assets/js/72.9db21b09.js"><link rel="prefetch" href="/senlay.github.io/assets/js/73.5be3e5e2.js"><link rel="prefetch" href="/senlay.github.io/assets/js/74.e1a4a0e5.js"><link rel="prefetch" href="/senlay.github.io/assets/js/75.3d6543b8.js"><link rel="prefetch" href="/senlay.github.io/assets/js/76.700a22b2.js"><link rel="prefetch" href="/senlay.github.io/assets/js/77.6de14174.js"><link rel="prefetch" href="/senlay.github.io/assets/js/78.264d827a.js"><link rel="prefetch" href="/senlay.github.io/assets/js/79.f3f454f0.js"><link rel="prefetch" href="/senlay.github.io/assets/js/8.e6e200a2.js"><link rel="prefetch" href="/senlay.github.io/assets/js/80.80de905d.js"><link rel="prefetch" href="/senlay.github.io/assets/js/81.3f588dd5.js"><link rel="prefetch" href="/senlay.github.io/assets/js/82.cef4373c.js"><link rel="prefetch" href="/senlay.github.io/assets/js/9.2721dc7f.js">
+    <link rel="stylesheet" href="/senlay.github.io/assets/css/0.styles.0f315599.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div><div class="theme-container"><div><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/senlay.github.io/" class="home-link router-link-active"><img src="/senlay.github.io/img/senlay.jpg" alt="SENLAY" class="logo"> <span class="site-name">SENLAY</span></a> <div class="links"><div class="color-picker"><a href="#" class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="theme-options"><!----> <div class="dark-theme-options toggle-option"><label for="dark-theme-toggle">Enable Dark Theme?</label> <input id="dark-theme-toggle" type="checkbox" checked="checked"></div></div></div></div> <div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/senlay.github.io/" class="nav-link"><i class="iconfont undefined"></i>
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      分类
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/扫一扫，加微信.html" class="nav-link"><i class="iconfont undefined"></i>
+  扫一扫，加微信
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/diary.html" class="nav-link"><i class="iconfont undefined"></i>
+  diary
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/conception.html" class="nav-link"><i class="iconfont undefined"></i>
+  conception
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/dva.html" class="nav-link"><i class="iconfont undefined"></i>
+  dva
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/docker.html" class="nav-link"><i class="iconfont undefined"></i>
+  docker
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/java.html" class="nav-link"><i class="iconfont undefined"></i>
+  java
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/flowable.html" class="nav-link"><i class="iconfont undefined"></i>
+  flowable
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/git.html" class="nav-link"><i class="iconfont undefined"></i>
+  git
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/linux.html" class="nav-link"><i class="iconfont undefined"></i>
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/jboss.html" class="nav-link"><i class="iconfont undefined"></i>
+  jboss
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/react.html" class="nav-link"><i class="iconfont undefined"></i>
+  react
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/layui.html" class="nav-link"><i class="iconfont undefined"></i>
+  layui
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/js.html" class="nav-link"><i class="iconfont undefined"></i>
+  js
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/jdbc.html" class="nav-link"><i class="iconfont undefined"></i>
+  jdbc
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/mysql.html" class="nav-link"><i class="iconfont undefined"></i>
+  mysql
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/spring.html" class="nav-link"><i class="iconfont undefined"></i>
+  spring
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/redis.html" class="nav-link"><i class="iconfont undefined"></i>
+  redis
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/vue.html" class="nav-link"><i class="iconfont undefined"></i>
+  vue
+</a></li></ul></div></div><div class="nav-item"><a href="/senlay.github.io/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  标签
+</a></div><div class="nav-item"><a href="/senlay.github.io/timeLine/" class="nav-link"><i class="iconfont reco-date"></i>
+  时间轴
+</a></div><div class="nav-item"><a href="https://vuepress.vuejs.org" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  vuepress
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont undefined"></i>
+      友情链接
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/senlay/senlay.github.io" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://gitee.com/ylbs/dsl" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  gitee
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="http://tool.oschina.net/apidocs/apidoc?api=jdk_7u4" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  jdk-api
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://www.runoob.com/java/java-tutorial.html" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  java
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://cn.vuejs.org/v2/guide/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  vue
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="http://element-ui.cn/#/zh-CN/component/installation" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  element-ui
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://www.w3cschool.cn/wkspring/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  spring
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://www.runoob.com/design-pattern/design-pattern-tutorial.html" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  design-pattern
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></div></div><div class="nav-item"><a href="/senlay.github.io/about/" class="nav-link"><i class="iconfont undefined"></i>
+  关于我
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/senlay.github.io/" class="nav-link"><i class="iconfont undefined"></i>
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      分类
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/扫一扫，加微信.html" class="nav-link"><i class="iconfont undefined"></i>
+  扫一扫，加微信
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/diary.html" class="nav-link"><i class="iconfont undefined"></i>
+  diary
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/conception.html" class="nav-link"><i class="iconfont undefined"></i>
+  conception
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/dva.html" class="nav-link"><i class="iconfont undefined"></i>
+  dva
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/docker.html" class="nav-link"><i class="iconfont undefined"></i>
+  docker
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/java.html" class="nav-link"><i class="iconfont undefined"></i>
+  java
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/flowable.html" class="nav-link"><i class="iconfont undefined"></i>
+  flowable
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/git.html" class="nav-link"><i class="iconfont undefined"></i>
+  git
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/linux.html" class="nav-link"><i class="iconfont undefined"></i>
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/jboss.html" class="nav-link"><i class="iconfont undefined"></i>
+  jboss
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/react.html" class="nav-link"><i class="iconfont undefined"></i>
+  react
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/layui.html" class="nav-link"><i class="iconfont undefined"></i>
+  layui
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/js.html" class="nav-link"><i class="iconfont undefined"></i>
+  js
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/jdbc.html" class="nav-link"><i class="iconfont undefined"></i>
+  jdbc
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/mysql.html" class="nav-link"><i class="iconfont undefined"></i>
+  mysql
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/spring.html" class="nav-link"><i class="iconfont undefined"></i>
+  spring
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/redis.html" class="nav-link"><i class="iconfont undefined"></i>
+  redis
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/vue.html" class="nav-link"><i class="iconfont undefined"></i>
+  vue
+</a></li></ul></div></div><div class="nav-item"><a href="/senlay.github.io/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  标签
+</a></div><div class="nav-item"><a href="/senlay.github.io/timeLine/" class="nav-link"><i class="iconfont reco-date"></i>
+  时间轴
+</a></div><div class="nav-item"><a href="https://vuepress.vuejs.org" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  vuepress
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont undefined"></i>
+      友情链接
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/senlay/senlay.github.io" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://gitee.com/ylbs/dsl" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  gitee
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="http://tool.oschina.net/apidocs/apidoc?api=jdk_7u4" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  jdk-api
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://www.runoob.com/java/java-tutorial.html" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  java
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://cn.vuejs.org/v2/guide/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  vue
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="http://element-ui.cn/#/zh-CN/component/installation" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  element-ui
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://www.w3cschool.cn/wkspring/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  spring
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://www.runoob.com/design-pattern/design-pattern-tutorial.html" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  design-pattern
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></div></div><div class="nav-item"><a href="/senlay.github.io/about/" class="nav-link"><i class="iconfont undefined"></i>
+  关于我
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Vue</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>Java</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/senlay.github.io/guide/java/java.html" class="sidebar-link">java基础</a></li><li><a href="/senlay.github.io/guide/java/list.html" class="sidebar-link">list常用技巧</a></li><li><a href="/senlay.github.io/guide/java/log4j.html" class="sidebar-link">日志</a></li><li><a href="/senlay.github.io/guide/java/junit.html" class="sidebar-link">单元测试</a></li><li><a href="/senlay.github.io/guide/java/exception.html" class="sidebar-link">异常</a></li><li><a href="/senlay.github.io/guide/java/thread.html" class="sidebar-link">多线程应用</a></li><li><a href="/senlay.github.io/guide/java/HashMap_sourceCode.html" class="sidebar-link">HashMap源码</a></li><li><a href="/senlay.github.io/guide/java/ThreadLocal原理与使用.html" class="active sidebar-link">ThreadLocal原理与使用</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Jboss</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Flowable</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Redis</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>git</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Mysql</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>js</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>layui</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>react+antd由浅入深</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>dva</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>spring</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>docker</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>springCloud</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>diary</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>conception</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>conception</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <div><main class="page reco-hide"> <div class="page-title"><h1>ThreadLocal原理与使用</h1> <hr> <div data-v-0b496ca7><i class="iconfont reco-account" data-v-0b496ca7><span data-v-0b496ca7>senlay</span></i> <i class="iconfont reco-date" data-v-0b496ca7><span data-v-0b496ca7>2020-1-12</span></i> <span id="/senlay.github.io/guide/java/ThreadLocal%E5%8E%9F%E7%90%86%E4%B8%8E%E4%BD%BF%E7%94%A8.html" data-flag-title="Your Article Title" class="leancloud-visitors" data-v-2e99e05a data-v-0b496ca7><i class="iconfont reco-eye" style="margin-right: .5rem" data-v-2e99e05a></i> <a class="leancloud-visitors-count" style="font-size:.9rem;font-weight:normal;color:#999;" data-v-2e99e05a></a></span> <i class="iconfont reco-tag tags" data-v-0b496ca7><span class="tag-item" data-v-0b496ca7>
+      thread
+    </span></i></div></div> <div class="content__default"><p>####提出问题？</p> <blockquote><p>多个线程访问同一个贡献变量时，可能出现线程同步，死锁等问题。
+如何解决多个线程同时操作同一共享变量呢?
+可以采用 <font color="red"> ThreadLocal 和 InheritableThreadLocal </font></p></blockquote> <ul><li>1，ThreadLocal</li></ul> <blockquote><p>当使用ThreadLocal维护变量时，ThreadLocal为每个使用该变量的线程提供独立的变量副本，所以每一个线程都可以独立地改变自己的副本，而不会影响其它线程所对应的副本
+ThreadLocal在java.lang包下。有个子类InheritableThreadLocal。
+假设ThreadA，ThreadB；成员变量tLocals。
+ThreadA访问tLocals，首先将tLocals拷贝到线程本地的threadLocals中，threadLocals是一个map，它的键保存的是tLocals所指向的实例地址，它的值保存的就是tLocals.set(设置的值)</p></blockquote> <ul><li><p>说明：</p> <ul><li><p>（1）可以自定义一个ThreadLocal子类，然后重写initialValue()，这样在第一次get()返回的就不是null</p></li> <li><p>（2）常用方法：get()  、set(..)  、remove()</p></li></ul></li> <li><p>2，InheritableThreadLocal</p></li></ul> <blockquote><p>ThreadLocal定义的变量，子线程不能获取其中的值
+但是采用InheritableThreadLocal可以实现。</p></blockquote> <ul><li>InheritableThreadLocal继承ThreadLocal，内部也维护了一个map,childValue方法维护主线程与子线程共享一个ThreadLocal</li></ul> <blockquote><pre><code>protected T childValue(T parentValue) {
+     return parentValue;
+ }
+</code></pre></blockquote> <div class="language- extra-class"><pre class="language-text"><code>private static ThreadLocal&lt;String&gt; tl2 = new InheritableThreadLocal&lt;&gt;();
+
+public static void main(String[] args) throws InterruptedException {
+
+/**
+* 注：父线程的InheritableThreadLocal的设值，需要写在线程定义之前
+* 否则在子线程中的获取值就为null
+*/
+tl2.set(&quot;qwqw&quot;);
+
+Thread t = new Thread() {
+
+public void run() {
+
+try {
+
+Thread.sleep(1000);
+
+} catch (InterruptedException e) {
+
+// TODO Auto-generated catch block
+e.printStackTrace();
+
+}
+System.out.println(&quot;son thread tl2:&quot; + tl2.get());
+
+};
+
+};
+
+t.start();
+
+System.out.println(&quot;main thread tl2:&quot; + tl2.get());
+
+}
+
+
+
+打印结果：
+
+son thread tl2:qwqw
+main thread tl2:qwqw
+
+</code></pre></div><ul><li><p>3，ThreadLocal的应用场景</p> <ul><li>（1）子线程需要使用存放在 threadlocal 变量中的用户登录信息，</li> <li>（2）一些中间件需要把统一的 id 追踪的整个调用链路记录下来</li></ul></li> <li><p>4，ThreadLocal的数据结构</p></li></ul> <blockquote><ul><li>内部维护了一个Map,即ThreadLocalMap</li> <li>ThreadLocalMap用于存储每一个线程的变量副本，Map中元素的键为线程对象，而值对应线程的变量副本。</li></ul></blockquote> <div class="language- extra-class"><pre class="language-text"><code> public T get() {
+        // 获取当前线程
+        Thread t = Thread.currentThread();
+        // 初始化 ThreadLocalMap
+        ThreadLocalMap map = getMap(t);
+        if (map != null) {
+            ThreadLocalMap.Entry e = map.getEntry(this);
+            if (e != null) {
+                @SuppressWarnings(&quot;unchecked&quot;)
+                T result = (T)e.value;
+                return result;
+            }
+        }
+        return setInitialValue();
+    }
+    
+      ThreadLocalMap getMap(Thread t) {
+            return t.threadLocals;
+        }
+        
+      private T setInitialValue() {
+            // 默认为空
+            T value = initialValue();
+            // 获取当前线程
+            Thread t = Thread.currentThread();
+            // 初始化ThreadLocalMap
+            ThreadLocalMap map = getMap(t);
+            if (map != null)
+                map.set(this, value);
+            else
+                createMap(t, value);
+            return value;
+        }
+        
+       // 首先通过getMap(Thread t)方法获取一个和当前线程相关的ThreadLocalMap，
+      //然后将变量的值设置到这个ThreadLocalMap对象中，当然如果获取到的ThreadLocalMap对象为空，就通过createMap方法创建。 
+        public void set(T value) {
+              Thread t = Thread.currentThread();
+              // 根据当前线程获取一个ThreadLocalMap，即每个线程都会有自己的ThreadLocalMap
+              ThreadLocalMap map = getMap(t);
+              // 如果ThreadLocalMap不为空，则将ThreadLocal对象和值设置到map中去，否真创建一个
+              if (map != null)
+                  map.set(this, value);
+              else
+                  createMap(t, value);
+          }      
+
+</code></pre></div><ul><li>ThreadLocalMap源码</li></ul> <div class="language- extra-class"><pre class="language-text"><code>
+// ThreadLocalMap是ThreadLocal类的一个静态内部类，它实现了键值对的设置和获取，
+// 每个线程中都有一个独立的ThreadLocalMap副本，它所存储的值，只能被当前线程读取和修改。
+// ThreadLocal类通过操作每一个线程特有的ThreadLocalMap副本，从而实现了变量访问在不同线程中的隔离。
+// 因为每个线程的变量都是自己特有的，完全不会有并发错误。还有一点就是，
+// ThreadLocalMap存储的键值对中的键是this对象指向的ThreadLocal对象，而值就是所设置的对象
+static class ThreadLocalMap {
+
+        /**
+         * The entries in this hash map extend WeakReference, using
+         * its main ref field as the key (which is always a
+         * ThreadLocal object).  Note that null keys (i.e. entry.get()
+         * == null) mean that the key is no longer referenced, so the
+         * entry can be expunged from table.  Such entries are referred to
+         * as &quot;stale entries&quot; in the code that follows.
+         */
+        static class Entry extends WeakReference&lt;ThreadLocal&lt;?&gt;&gt; {
+            /** The value associated with this ThreadLocal. */
+            Object value;
+
+            Entry(ThreadLocal&lt;?&gt; k, Object v) {
+                super(k);
+                value = v;
+            }
+        }
+
+        /**
+         * The initial capacity -- MUST be a power of two.
+         */
+        private static final int INITIAL_CAPACITY = 16;
+
+        /**
+         * The table, resized as necessary.
+         * table.length MUST always be a power of two.
+         */
+        private Entry[] table;
+
+        /**
+         * The number of entries in the table.
+         */
+        private int size = 0;
+
+        /**
+         * The next size value at which to resize.
+         */
+        private int threshold; // Default to 0
+
+        /**
+         * Set the resize threshold to maintain at worst a 2/3 load factor.
+         */
+        private void setThreshold(int len) {
+            threshold = len * 2 / 3;
+        }
+
+        /**
+         * Increment i modulo len.
+         */
+        private static int nextIndex(int i, int len) {
+            return ((i + 1 &lt; len) ? i + 1 : 0);
+        }
+
+        /**
+         * Decrement i modulo len.
+         */
+        private static int prevIndex(int i, int len) {
+            return ((i - 1 &gt;= 0) ? i - 1 : len - 1);
+        }
+
+        /**
+         * Construct a new map initially containing (firstKey, firstValue).
+         * ThreadLocalMaps are constructed lazily, so we only create
+         * one when we have at least one entry to put in it.
+         */
+        ThreadLocalMap(ThreadLocal&lt;?&gt; firstKey, Object firstValue) {
+            table = new Entry[INITIAL_CAPACITY];
+            int i = firstKey.threadLocalHashCode &amp; (INITIAL_CAPACITY - 1);
+            table[i] = new Entry(firstKey, firstValue);
+            size = 1;
+            setThreshold(INITIAL_CAPACITY);
+        }
+
+        /**
+         * Construct a new map including all Inheritable ThreadLocals
+         * from given parent map. Called only by createInheritedMap.
+         *
+         * @param parentMap the map associated with parent thread.
+         */
+        private ThreadLocalMap(ThreadLocalMap parentMap) {
+            Entry[] parentTable = parentMap.table;
+            int len = parentTable.length;
+            setThreshold(len);
+            table = new Entry[len];
+
+            for (int j = 0; j &lt; len; j++) {
+                Entry e = parentTable[j];
+                if (e != null) {
+                    @SuppressWarnings(&quot;unchecked&quot;)
+                    ThreadLocal&lt;Object&gt; key = (ThreadLocal&lt;Object&gt;) e.get();
+                    if (key != null) {
+                        Object value = key.childValue(e.value);
+                        Entry c = new Entry(key, value);
+                        int h = key.threadLocalHashCode &amp; (len - 1);
+                        while (table[h] != null)
+                            h = nextIndex(h, len);
+                        table[h] = c;
+                        size++;
+                    }
+                }
+            }
+        }
+
+        /**
+         * Get the entry associated with key.  This method
+         * itself handles only the fast path: a direct hit of existing
+         * key. It otherwise relays to getEntryAfterMiss.  This is
+         * designed to maximize performance for direct hits, in part
+         * by making this method readily inlinable.
+         *
+         * @param  key the thread local object
+         * @return the entry associated with key, or null if no such
+         */
+        private Entry getEntry(ThreadLocal&lt;?&gt; key) {
+            int i = key.threadLocalHashCode &amp; (table.length - 1);
+            Entry e = table[i];
+            if (e != null &amp;&amp; e.get() == key)
+                return e;
+            else
+                return getEntryAfterMiss(key, i, e);
+        }
+
+        /**
+         * Version of getEntry method for use when key is not found in
+         * its direct hash slot.
+         *
+         * @param  key the thread local object
+         * @param  i the table index for key's hash code
+         * @param  e the entry at table[i]
+         * @return the entry associated with key, or null if no such
+         */
+        private Entry getEntryAfterMiss(ThreadLocal&lt;?&gt; key, int i, Entry e) {
+            Entry[] tab = table;
+            int len = tab.length;
+
+            while (e != null) {
+                ThreadLocal&lt;?&gt; k = e.get();
+                if (k == key)
+                    return e;
+                if (k == null)
+                    expungeStaleEntry(i);
+                else
+                    i = nextIndex(i, len);
+                e = tab[i];
+            }
+            return null;
+        }
+
+        /**
+         * Set the value associated with key.
+         *
+         * @param key the thread local object
+         * @param value the value to be set
+         */
+        private void set(ThreadLocal&lt;?&gt; key, Object value) {
+
+            // We don't use a fast path as with get() because it is at
+            // least as common to use set() to create new entries as
+            // it is to replace existing ones, in which case, a fast
+            // path would fail more often than not.
+
+            Entry[] tab = table;
+            int len = tab.length;
+            int i = key.threadLocalHashCode &amp; (len-1);
+
+            for (Entry e = tab[i];
+                 e != null;
+                 e = tab[i = nextIndex(i, len)]) {
+                ThreadLocal&lt;?&gt; k = e.get();
+
+                if (k == key) {
+                    e.value = value;
+                    return;
+                }
+
+                if (k == null) {
+                    replaceStaleEntry(key, value, i);
+                    return;
+                }
+            }
+
+            tab[i] = new Entry(key, value);
+            int sz = ++size;
+            if (!cleanSomeSlots(i, sz) &amp;&amp; sz &gt;= threshold)
+                rehash();
+        }
+
+        /**
+         * Remove the entry for key.
+         */
+        private void remove(ThreadLocal&lt;?&gt; key) {
+            Entry[] tab = table;
+            int len = tab.length;
+            int i = key.threadLocalHashCode &amp; (len-1);
+            for (Entry e = tab[i];
+                 e != null;
+                 e = tab[i = nextIndex(i, len)]) {
+                if (e.get() == key) {
+                    e.clear();
+                    expungeStaleEntry(i);
+                    return;
+                }
+            }
+        }
+
+        /**
+         * Replace a stale entry encountered during a set operation
+         * with an entry for the specified key.  The value passed in
+         * the value parameter is stored in the entry, whether or not
+         * an entry already exists for the specified key.
+         *
+         * As a side effect, this method expunges all stale entries in the
+         * &quot;run&quot; containing the stale entry.  (A run is a sequence of entries
+         * between two null slots.)
+         *
+         * @param  key the key
+         * @param  value the value to be associated with key
+         * @param  staleSlot index of the first stale entry encountered while
+         *         searching for key.
+         */
+        private void replaceStaleEntry(ThreadLocal&lt;?&gt; key, Object value,
+                                       int staleSlot) {
+            Entry[] tab = table;
+            int len = tab.length;
+            Entry e;
+
+            // Back up to check for prior stale entry in current run.
+            // We clean out whole runs at a time to avoid continual
+            // incremental rehashing due to garbage collector freeing
+            // up refs in bunches (i.e., whenever the collector runs).
+            int slotToExpunge = staleSlot;
+            for (int i = prevIndex(staleSlot, len);
+                 (e = tab[i]) != null;
+                 i = prevIndex(i, len))
+                if (e.get() == null)
+                    slotToExpunge = i;
+
+            // Find either the key or trailing null slot of run, whichever
+            // occurs first
+            for (int i = nextIndex(staleSlot, len);
+                 (e = tab[i]) != null;
+                 i = nextIndex(i, len)) {
+                ThreadLocal&lt;?&gt; k = e.get();
+
+                // If we find key, then we need to swap it
+                // with the stale entry to maintain hash table order.
+                // The newly stale slot, or any other stale slot
+                // encountered above it, can then be sent to expungeStaleEntry
+                // to remove or rehash all of the other entries in run.
+                if (k == key) {
+                    e.value = value;
+
+                    tab[i] = tab[staleSlot];
+                    tab[staleSlot] = e;
+
+                    // Start expunge at preceding stale entry if it exists
+                    if (slotToExpunge == staleSlot)
+                        slotToExpunge = i;
+                    cleanSomeSlots(expungeStaleEntry(slotToExpunge), len);
+                    return;
+                }
+
+                // If we didn't find stale entry on backward scan, the
+                // first stale entry seen while scanning for key is the
+                // first still present in the run.
+                if (k == null &amp;&amp; slotToExpunge == staleSlot)
+                    slotToExpunge = i;
+            }
+
+            // If key not found, put new entry in stale slot
+            tab[staleSlot].value = null;
+            tab[staleSlot] = new Entry(key, value);
+
+            // If there are any other stale entries in run, expunge them
+            if (slotToExpunge != staleSlot)
+                cleanSomeSlots(expungeStaleEntry(slotToExpunge), len);
+        }
+
+        /**
+         * Expunge a stale entry by rehashing any possibly colliding entries
+         * lying between staleSlot and the next null slot.  This also expunges
+         * any other stale entries encountered before the trailing null.  See
+         * Knuth, Section 6.4
+         *
+         * @param staleSlot index of slot known to have null key
+         * @return the index of the next null slot after staleSlot
+         * (all between staleSlot and this slot will have been checked
+         * for expunging).
+         */
+        private int expungeStaleEntry(int staleSlot) {
+            Entry[] tab = table;
+            int len = tab.length;
+
+            // expunge entry at staleSlot
+            tab[staleSlot].value = null;
+            tab[staleSlot] = null;
+            size--;
+
+            // Rehash until we encounter null
+            Entry e;
+            int i;
+            for (i = nextIndex(staleSlot, len);
+                 (e = tab[i]) != null;
+                 i = nextIndex(i, len)) {
+                ThreadLocal&lt;?&gt; k = e.get();
+                if (k == null) {
+                    e.value = null;
+                    tab[i] = null;
+                    size--;
+                } else {
+                    int h = k.threadLocalHashCode &amp; (len - 1);
+                    if (h != i) {
+                        tab[i] = null;
+
+                        // Unlike Knuth 6.4 Algorithm R, we must scan until
+                        // null because multiple entries could have been stale.
+                        while (tab[h] != null)
+                            h = nextIndex(h, len);
+                        tab[h] = e;
+                    }
+                }
+            }
+            return i;
+        }
+
+        /**
+         * Heuristically scan some cells looking for stale entries.
+         * This is invoked when either a new element is added, or
+         * another stale one has been expunged. It performs a
+         * logarithmic number of scans, as a balance between no
+         * scanning (fast but retains garbage) and a number of scans
+         * proportional to number of elements, that would find all
+         * garbage but would cause some insertions to take O(n) time.
+         *
+         * @param i a position known NOT to hold a stale entry. The
+         * scan starts at the element after i.
+         *
+         * @param n scan control: {@code log2(n)} cells are scanned,
+         * unless a stale entry is found, in which case
+         * {@code log2(table.length)-1} additional cells are scanned.
+         * When called from insertions, this parameter is the number
+         * of elements, but when from replaceStaleEntry, it is the
+         * table length. (Note: all this could be changed to be either
+         * more or less aggressive by weighting n instead of just
+         * using straight log n. But this version is simple, fast, and
+         * seems to work well.)
+         *
+         * @return true if any stale entries have been removed.
+         */
+        private boolean cleanSomeSlots(int i, int n) {
+            boolean removed = false;
+            Entry[] tab = table;
+            int len = tab.length;
+            do {
+                i = nextIndex(i, len);
+                Entry e = tab[i];
+                if (e != null &amp;&amp; e.get() == null) {
+                    n = len;
+                    removed = true;
+                    i = expungeStaleEntry(i);
+                }
+            } while ( (n &gt;&gt;&gt;= 1) != 0);
+            return removed;
+        }
+
+        /**
+         * Re-pack and/or re-size the table. First scan the entire
+         * table removing stale entries. If this doesn't sufficiently
+         * shrink the size of the table, double the table size.
+         */
+        private void rehash() {
+            expungeStaleEntries();
+
+            // Use lower threshold for doubling to avoid hysteresis
+            if (size &gt;= threshold - threshold / 4)
+                resize();
+        }
+
+        /**
+         * Double the capacity of the table.
+         */
+        private void resize() {
+            Entry[] oldTab = table;
+            int oldLen = oldTab.length;
+            int newLen = oldLen * 2;
+            Entry[] newTab = new Entry[newLen];
+            int count = 0;
+
+            for (int j = 0; j &lt; oldLen; ++j) {
+                Entry e = oldTab[j];
+                if (e != null) {
+                    ThreadLocal&lt;?&gt; k = e.get();
+                    if (k == null) {
+                        e.value = null; // Help the GC
+                    } else {
+                        int h = k.threadLocalHashCode &amp; (newLen - 1);
+                        while (newTab[h] != null)
+                            h = nextIndex(h, newLen);
+                        newTab[h] = e;
+                        count++;
+                    }
+                }
+            }
+
+            setThreshold(newLen);
+            size = count;
+            table = newTab;
+        }
+
+        /**
+         * Expunge all stale entries in the table.
+         */
+        private void expungeStaleEntries() {
+            Entry[] tab = table;
+            int len = tab.length;
+            for (int j = 0; j &lt; len; j++) {
+                Entry e = tab[j];
+                if (e != null &amp;&amp; e.get() == null)
+                    expungeStaleEntry(j);
+            }
+        }
+    }
+</code></pre></div></div> <!----> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated: </span> <span class="time">1/12/2020, 1:59:39 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/senlay.github.io/guide/java/HashMap_sourceCode.html" class="prev">
+          HashMap源码
+        </a></span> <span class="next"><a href="/senlay.github.io/guide/jboss/jboss.html">
+          jboss快速入门
+        </a>
+        →
+      </span></p></div> </main> <div class="valine-wrapper" data-v-0162251c><div id="valine" data-v-0162251c></div></div></div> <div class="back-to-ceiling" style="right:1rem;bottom:3rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;background-color:rgba(231, 234, 241,.5);display:none;" data-v-d0bfeaa4 data-v-d0bfeaa4><i class="iconfont reco-up" data-v-d0bfeaa4></i></div></div></div></div><div class="global-ui"></div></div>
+    <script src="/senlay.github.io/assets/js/app.7b37906d.js" defer></script><script src="/senlay.github.io/assets/js/4.98832570.js" defer></script><script src="/senlay.github.io/assets/js/2.a115eab3.js" defer></script><script src="/senlay.github.io/assets/js/28.ae29d7e9.js" defer></script>
+  </body>
+</html>

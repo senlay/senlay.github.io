@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Java Thread Dump分析 | SENLAY</title>
+    <meta name="description" content="众木成林">
+    <link rel="icon" href="/senlay.github.io/img/logo.ico">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    
+    <link rel="preload" href="/senlay.github.io/assets/css/0.styles.0f315599.css" as="style"><link rel="preload" href="/senlay.github.io/assets/js/app.7b37906d.js" as="script"><link rel="preload" href="/senlay.github.io/assets/js/4.98832570.js" as="script"><link rel="preload" href="/senlay.github.io/assets/js/2.a115eab3.js" as="script"><link rel="preload" href="/senlay.github.io/assets/js/27.93c85aeb.js" as="script"><link rel="prefetch" href="/senlay.github.io/assets/js/1.2d95be01.js"><link rel="prefetch" href="/senlay.github.io/assets/js/10.e8c7dd8e.js"><link rel="prefetch" href="/senlay.github.io/assets/js/11.4c668a1e.js"><link rel="prefetch" href="/senlay.github.io/assets/js/12.8026e37d.js"><link rel="prefetch" href="/senlay.github.io/assets/js/13.f1a89c80.js"><link rel="prefetch" href="/senlay.github.io/assets/js/14.00e291e2.js"><link rel="prefetch" href="/senlay.github.io/assets/js/15.03f64819.js"><link rel="prefetch" href="/senlay.github.io/assets/js/16.31af0166.js"><link rel="prefetch" href="/senlay.github.io/assets/js/17.fd10f5f7.js"><link rel="prefetch" href="/senlay.github.io/assets/js/18.62e9f76a.js"><link rel="prefetch" href="/senlay.github.io/assets/js/19.3d984c85.js"><link rel="prefetch" href="/senlay.github.io/assets/js/20.63e4e5ce.js"><link rel="prefetch" href="/senlay.github.io/assets/js/21.53f7bcf7.js"><link rel="prefetch" href="/senlay.github.io/assets/js/22.8cf6e2b1.js"><link rel="prefetch" href="/senlay.github.io/assets/js/23.d6484eec.js"><link rel="prefetch" href="/senlay.github.io/assets/js/24.9fcb4b21.js"><link rel="prefetch" href="/senlay.github.io/assets/js/25.8808f7d2.js"><link rel="prefetch" href="/senlay.github.io/assets/js/26.29215ba7.js"><link rel="prefetch" href="/senlay.github.io/assets/js/28.ae29d7e9.js"><link rel="prefetch" href="/senlay.github.io/assets/js/29.e86d9a5f.js"><link rel="prefetch" href="/senlay.github.io/assets/js/30.65fe68b9.js"><link rel="prefetch" href="/senlay.github.io/assets/js/31.74859d89.js"><link rel="prefetch" href="/senlay.github.io/assets/js/32.78e565f3.js"><link rel="prefetch" href="/senlay.github.io/assets/js/33.7ce698bb.js"><link rel="prefetch" href="/senlay.github.io/assets/js/34.33f95e1d.js"><link rel="prefetch" href="/senlay.github.io/assets/js/35.92c1557d.js"><link rel="prefetch" href="/senlay.github.io/assets/js/36.e683b955.js"><link rel="prefetch" href="/senlay.github.io/assets/js/37.a515cf62.js"><link rel="prefetch" href="/senlay.github.io/assets/js/38.d1e9a811.js"><link rel="prefetch" href="/senlay.github.io/assets/js/39.92fc2c39.js"><link rel="prefetch" href="/senlay.github.io/assets/js/40.cda41d0f.js"><link rel="prefetch" href="/senlay.github.io/assets/js/41.edf05d24.js"><link rel="prefetch" href="/senlay.github.io/assets/js/42.5efd802d.js"><link rel="prefetch" href="/senlay.github.io/assets/js/43.9a0289af.js"><link rel="prefetch" href="/senlay.github.io/assets/js/44.323d7b48.js"><link rel="prefetch" href="/senlay.github.io/assets/js/45.9247e161.js"><link rel="prefetch" href="/senlay.github.io/assets/js/46.917a5998.js"><link rel="prefetch" href="/senlay.github.io/assets/js/47.e728bb43.js"><link rel="prefetch" href="/senlay.github.io/assets/js/48.e88b6285.js"><link rel="prefetch" href="/senlay.github.io/assets/js/49.759b5011.js"><link rel="prefetch" href="/senlay.github.io/assets/js/5.f4a7252a.js"><link rel="prefetch" href="/senlay.github.io/assets/js/50.6f5672bf.js"><link rel="prefetch" href="/senlay.github.io/assets/js/51.707900e4.js"><link rel="prefetch" href="/senlay.github.io/assets/js/52.bcc8ffbd.js"><link rel="prefetch" href="/senlay.github.io/assets/js/53.fd2966e4.js"><link rel="prefetch" href="/senlay.github.io/assets/js/54.b81bbf2d.js"><link rel="prefetch" href="/senlay.github.io/assets/js/55.8eae09b5.js"><link rel="prefetch" href="/senlay.github.io/assets/js/56.ff29ad46.js"><link rel="prefetch" href="/senlay.github.io/assets/js/57.ba08710a.js"><link rel="prefetch" href="/senlay.github.io/assets/js/58.5fb44ed4.js"><link rel="prefetch" href="/senlay.github.io/assets/js/59.cb51b2c3.js"><link rel="prefetch" href="/senlay.github.io/assets/js/6.9fc2c73f.js"><link rel="prefetch" href="/senlay.github.io/assets/js/60.77aaa01c.js"><link rel="prefetch" href="/senlay.github.io/assets/js/61.1c532657.js"><link rel="prefetch" href="/senlay.github.io/assets/js/62.d753eac3.js"><link rel="prefetch" href="/senlay.github.io/assets/js/63.5c80d0e5.js"><link rel="prefetch" href="/senlay.github.io/assets/js/64.21a55747.js"><link rel="prefetch" href="/senlay.github.io/assets/js/65.ea4d1c50.js"><link rel="prefetch" href="/senlay.github.io/assets/js/66.b2931912.js"><link rel="prefetch" href="/senlay.github.io/assets/js/67.d0fa5d1c.js"><link rel="prefetch" href="/senlay.github.io/assets/js/68.136433b1.js"><link rel="prefetch" href="/senlay.github.io/assets/js/69.a0ab999a.js"><link rel="prefetch" href="/senlay.github.io/assets/js/7.7cfd5da3.js"><link rel="prefetch" href="/senlay.github.io/assets/js/70.d67d915a.js"><link rel="prefetch" href="/senlay.github.io/assets/js/71.9627a47e.js"><link rel="prefetch" href="/senlay.github.io/assets/js/72.9db21b09.js"><link rel="prefetch" href="/senlay.github.io/assets/js/73.5be3e5e2.js"><link rel="prefetch" href="/senlay.github.io/assets/js/74.e1a4a0e5.js"><link rel="prefetch" href="/senlay.github.io/assets/js/75.3d6543b8.js"><link rel="prefetch" href="/senlay.github.io/assets/js/76.700a22b2.js"><link rel="prefetch" href="/senlay.github.io/assets/js/77.6de14174.js"><link rel="prefetch" href="/senlay.github.io/assets/js/78.264d827a.js"><link rel="prefetch" href="/senlay.github.io/assets/js/79.f3f454f0.js"><link rel="prefetch" href="/senlay.github.io/assets/js/8.e6e200a2.js"><link rel="prefetch" href="/senlay.github.io/assets/js/80.80de905d.js"><link rel="prefetch" href="/senlay.github.io/assets/js/81.3f588dd5.js"><link rel="prefetch" href="/senlay.github.io/assets/js/82.cef4373c.js"><link rel="prefetch" href="/senlay.github.io/assets/js/9.2721dc7f.js">
+    <link rel="stylesheet" href="/senlay.github.io/assets/css/0.styles.0f315599.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div><div class="theme-container"><div><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/senlay.github.io/" class="home-link router-link-active"><img src="/senlay.github.io/img/senlay.jpg" alt="SENLAY" class="logo"> <span class="site-name">SENLAY</span></a> <div class="links"><div class="color-picker"><a href="#" class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="theme-options"><!----> <div class="dark-theme-options toggle-option"><label for="dark-theme-toggle">Enable Dark Theme?</label> <input id="dark-theme-toggle" type="checkbox" checked="checked"></div></div></div></div> <div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/senlay.github.io/" class="nav-link"><i class="iconfont undefined"></i>
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      分类
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/扫一扫，加微信.html" class="nav-link"><i class="iconfont undefined"></i>
+  扫一扫，加微信
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/diary.html" class="nav-link"><i class="iconfont undefined"></i>
+  diary
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/conception.html" class="nav-link"><i class="iconfont undefined"></i>
+  conception
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/dva.html" class="nav-link"><i class="iconfont undefined"></i>
+  dva
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/docker.html" class="nav-link"><i class="iconfont undefined"></i>
+  docker
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/java.html" class="nav-link"><i class="iconfont undefined"></i>
+  java
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/flowable.html" class="nav-link"><i class="iconfont undefined"></i>
+  flowable
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/git.html" class="nav-link"><i class="iconfont undefined"></i>
+  git
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/linux.html" class="nav-link"><i class="iconfont undefined"></i>
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/jboss.html" class="nav-link"><i class="iconfont undefined"></i>
+  jboss
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/react.html" class="nav-link"><i class="iconfont undefined"></i>
+  react
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/layui.html" class="nav-link"><i class="iconfont undefined"></i>
+  layui
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/js.html" class="nav-link"><i class="iconfont undefined"></i>
+  js
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/jdbc.html" class="nav-link"><i class="iconfont undefined"></i>
+  jdbc
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/mysql.html" class="nav-link"><i class="iconfont undefined"></i>
+  mysql
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/spring.html" class="nav-link"><i class="iconfont undefined"></i>
+  spring
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/redis.html" class="nav-link"><i class="iconfont undefined"></i>
+  redis
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/vue.html" class="nav-link"><i class="iconfont undefined"></i>
+  vue
+</a></li></ul></div></div><div class="nav-item"><a href="/senlay.github.io/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  标签
+</a></div><div class="nav-item"><a href="/senlay.github.io/timeLine/" class="nav-link"><i class="iconfont reco-date"></i>
+  时间轴
+</a></div><div class="nav-item"><a href="https://vuepress.vuejs.org" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  vuepress
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont undefined"></i>
+      友情链接
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/senlay/senlay.github.io" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://gitee.com/ylbs/dsl" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  gitee
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="http://tool.oschina.net/apidocs/apidoc?api=jdk_7u4" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  jdk-api
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://www.runoob.com/java/java-tutorial.html" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  java
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://cn.vuejs.org/v2/guide/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  vue
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="http://element-ui.cn/#/zh-CN/component/installation" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  element-ui
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://www.w3cschool.cn/wkspring/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  spring
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://www.runoob.com/design-pattern/design-pattern-tutorial.html" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  design-pattern
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></div></div><div class="nav-item"><a href="/senlay.github.io/about/" class="nav-link"><i class="iconfont undefined"></i>
+  关于我
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/senlay.github.io/" class="nav-link"><i class="iconfont undefined"></i>
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      分类
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/扫一扫，加微信.html" class="nav-link"><i class="iconfont undefined"></i>
+  扫一扫，加微信
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/diary.html" class="nav-link"><i class="iconfont undefined"></i>
+  diary
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/conception.html" class="nav-link"><i class="iconfont undefined"></i>
+  conception
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/dva.html" class="nav-link"><i class="iconfont undefined"></i>
+  dva
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/docker.html" class="nav-link"><i class="iconfont undefined"></i>
+  docker
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/java.html" class="nav-link"><i class="iconfont undefined"></i>
+  java
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/flowable.html" class="nav-link"><i class="iconfont undefined"></i>
+  flowable
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/git.html" class="nav-link"><i class="iconfont undefined"></i>
+  git
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/linux.html" class="nav-link"><i class="iconfont undefined"></i>
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/jboss.html" class="nav-link"><i class="iconfont undefined"></i>
+  jboss
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/react.html" class="nav-link"><i class="iconfont undefined"></i>
+  react
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/layui.html" class="nav-link"><i class="iconfont undefined"></i>
+  layui
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/js.html" class="nav-link"><i class="iconfont undefined"></i>
+  js
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/jdbc.html" class="nav-link"><i class="iconfont undefined"></i>
+  jdbc
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/mysql.html" class="nav-link"><i class="iconfont undefined"></i>
+  mysql
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/spring.html" class="nav-link"><i class="iconfont undefined"></i>
+  spring
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/redis.html" class="nav-link"><i class="iconfont undefined"></i>
+  redis
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/vue.html" class="nav-link"><i class="iconfont undefined"></i>
+  vue
+</a></li></ul></div></div><div class="nav-item"><a href="/senlay.github.io/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  标签
+</a></div><div class="nav-item"><a href="/senlay.github.io/timeLine/" class="nav-link"><i class="iconfont reco-date"></i>
+  时间轴
+</a></div><div class="nav-item"><a href="https://vuepress.vuejs.org" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  vuepress
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont undefined"></i>
+      友情链接
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/senlay/senlay.github.io" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://gitee.com/ylbs/dsl" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  gitee
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="http://tool.oschina.net/apidocs/apidoc?api=jdk_7u4" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  jdk-api
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://www.runoob.com/java/java-tutorial.html" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  java
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://cn.vuejs.org/v2/guide/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  vue
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="http://element-ui.cn/#/zh-CN/component/installation" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  element-ui
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://www.w3cschool.cn/wkspring/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  spring
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://www.runoob.com/design-pattern/design-pattern-tutorial.html" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  design-pattern
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></div></div><div class="nav-item"><a href="/senlay.github.io/about/" class="nav-link"><i class="iconfont undefined"></i>
+  关于我
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>Vue</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/senlay.github.io/guide/vue/01-vue.html" class="sidebar-link">vue</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Java</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Jboss</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Flowable</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Redis</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>git</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Mysql</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>js</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>layui</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>react+antd由浅入深</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>dva</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>spring</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>docker</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>springCloud</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>diary</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>conception</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>conception</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <div><main class="page reco-hide"> <div class="page-title"><h1>Java Thread Dump分析</h1> <hr> <div data-v-0b496ca7><i class="iconfont reco-account" data-v-0b496ca7><span data-v-0b496ca7>senlay</span></i> <!----> <span id="/senlay.github.io/guide/java/Java%20Thread%20Dump.html" data-flag-title="Your Article Title" class="leancloud-visitors" data-v-2e99e05a data-v-0b496ca7><i class="iconfont reco-eye" style="margin-right: .5rem" data-v-2e99e05a></i> <a class="leancloud-visitors-count" style="font-size:.9rem;font-weight:normal;color:#999;" data-v-2e99e05a></a></span> <!----></div></div> <div class="content__default"><h4 id="java-thread-dump分析"><a href="#java-thread-dump分析" aria-hidden="true" class="header-anchor">#</a> Java Thread Dump分析</h4> <ul><li><p>任何操作系统平台下都可以使用。</p></li> <li><p>在多数情况下，可以在生产环境中使用。</p></li> <li><p>和操作系统提供的工具相比，java thread dump给出的信息是直白的，直接对应到应用代码。</p></li> <li><p>它对被分析的系统干扰很小，因此能反应真实的问题。而其它很多profiling或Instrument工具本身对JVM运行有很大的干扰，经常不能暴露出真正的问题，而且这种工具不能用于生产系统。</p></li></ul> <h4 id="java-线程"><a href="#java-线程" aria-hidden="true" class="header-anchor">#</a> Java 线程</h4> <p>线程是指能独立于程序的其它部分运行的执行单元。 JAVA语言能够很好的实现多线程的程序。我们在调试程序，或者在开发后期需要做性能调优的时候，往往也需要了解当前程序正在运行的线程的状态，正在执行的操作，从而分析系统可能存在的问题。</p> <h4 id="产生-java线程-dump"><a href="#产生-java线程-dump" aria-hidden="true" class="header-anchor">#</a> 产生 JAVA线程 dump</h4> <p>JAVA 的线程 DUMP，就象当前 JAVA进程的一个快照，打印出所有线程的状态和调用堆栈，以及 Monitor的状态。在不同的操作系统下，产生线程 DUMP的方式是不同的。</p> <h4 id="windows"><a href="#windows" aria-hidden="true" class="header-anchor">#</a> windows</h4> <p>在启动程序的控制台里敲： Ctrl - Break，线程的 dump会产生在标准输出中（缺省标准输出就是控制台，如果对输出进行了重定向，则要查看输出文件）。</p> <p>Linux(Unix\MacOS)
+用 “kill -3 <pid>” ，或者 “kill – QUIT <pid>”。 Pid是用所关注的 JAVA进程号，您可以用 “ps -ef | grep java” 找到，或者使用 JDK 5.0(或以上)中的 “jps -v” 命令获得。</pid></pid></p> <p>在各个操作系统平台，都可以用 JDK 5.0(或以上)工具包中的 jstack <pid></pid></p> <p>这里要注意的是：</p> <ol><li><pre><code>不同的 JAVA虚机的线程 DUMP的创建方法和文件格式是不一样的，不同的 JVM版本， dump信息也有差别。
+</code></pre></li> <li><pre><code>在实际运行中，往往一次 dump的信息，还不足以确认问题。建议产生二到三次 dump信息，如果每次 dump都指向同一个问题，我们才确定问题的典型性。
+</code></pre></li></ol> <p>线程的状态分析
+线程的状态是一个重要的指标，它会显示在线程 Stacktrace的头一行结尾的地方。那么线程常见的有哪些状态呢？线程在什么样的情况下会进入这种状态呢？我们能从中发现什么线索？</p> <p>dump 文件里，值得关注的线程状态有：
+死锁，Deadlock（重点关注）
+执行中，Runnable
+等待资源，Waiting on condition（重点关注）
+等待获取监视器，Waiting on monitor entry（重点关注）
+暂停，Suspended
+对象等待中，Object.wait() 或 TIMED_WAITING
+阻塞，Blocked（重点关注）
+停止，Parked
+Deadlock
+死锁线程，一般指多个线程调用间，进入相互资源占用，导致一直等待无法释放的情况。</p> <p>Runnable
+该状态表示线程具备所有运行条件，在运行队列中准备操作系统的调度，或者正在运行。</p> <p>Waiting on condition
+等待资源，或等待某个条件的发生。具体原因需结合 stacktrace来分析。</p> <p>如果堆栈信息明确是应用代码，则证明该线程正在等待资源。一般是大量读取某资源，且该资源采用了资源锁的情况下，线程进入等待状态，等待资源的读取。
+又或者，正在等待其他线程的执行等。
+如果发现有大量的线程都在处在 Wait on condition，从线程 stack看，正等待网络读写，这可能是一个网络瓶颈的征兆。因为网络阻塞导致线程无法执行。
+一种情况是网络非常忙，几乎消耗了所有的带宽，仍然有大量数据等待网络读写；
+另一种情况也可能是网络空闲，但由于路由等问题，导致包无法正常的到达。
+另外一种出现 Wait on condition的常见情况是该线程在 sleep，等待 sleep的时间到了时候，将被唤醒。
+Blocked
+线程阻塞，是指当前线程执行过程中，所需要的资源长时间等待却一直未能获取到，被容器的线程管理器标识为阻塞状态，可以理解为等待资源超时的线程。</p> <p>Waiting for monitor entry 和 in Object.wait()
+Monitor是 Java中用以实现线程之间的互斥与协作的主要手段，它可以看成是对象或者 Class的锁。每一个对象都有，也仅有一个 monitor。从下图1中可以看出，每个 Monitor在某个时刻，只能被一个线程拥有，该线程就是 “Active Thread”，而其它线程都是 “Waiting Thread”，分别在两个队列 “ Entry Set”和 “Wait Set”里面等候。在 “Entry Set”中等待的线程状态是 “Waiting for monitor entry”，而在 “Wait Set”中等待的线程状态是 “in Object.wait()”。</p> <pre><code>                                                          图1
+</code></pre> <p>先看 “Entry Set”里面的线程。我们称被 synchronized保护起来的代码段为临界区。当一个线程申请进入临界区时，它就进入了 “Entry Set”队列。对应的 code就像：</p> <p>synchronized(obj) {</p> <p>.........</p> <p>}</p> <p>这时有两种可能性：</p> <p>·          该 monitor不被其它线程拥有， Entry Set里面也没有其它等待线程。本线程即成为相应类或者对象的 Monitor的 Owner，执行临界区的代码</p> <p>·          该 monitor被其它线程拥有，本线程在 Entry Set队列中等待。</p> <p>在第一种情况下，线程将处于 “Runnable”的状态，而第二种情况下，线程 DUMP会显示处于 “waiting for monitor entry”。如下所示：</p> <p>&quot;Thread-0&quot; prio=10 tid=0x08222eb0 nid=0x9 waiting for monitor entry [0xf927b000..0xf927bdb8]</p> <p>at testthread.WaitThread.run(WaitThread.java:39)</p> <ul><li><p>waiting to lock &lt;0xef63bf08&gt; (a java.lang.Object)</p></li> <li><p>locked &lt;0xef63beb8&gt; (a java.util.ArrayList)</p></li></ul> <p>at java.lang.Thread.run(Thread.java:595)</p> <p>临界区的设置，是为了保证其内部的代码执行的原子性和完整性。但是因为临界区在任何时间只允许线程串行通过，这和我们多线程的程序的初衷是相反的。 如果在多线程的程序中，大量使用 synchronized，或者不适当的使用了它，会造成大量线程在临界区的入口等待，造成系统的性能大幅下降。如果在线程 DUMP中发现了这个情况，应该审查源码，改进程序。</p> <p>现在我们再来看现在线程为什么会进入 “Wait Set”。当线程获得了 Monitor，进入了临界区之后，如果发现线程继续运行的条件没有满足，它则调用对象（一般就是被 synchronized 的对象）的 wait() 方法，放弃了 Monitor，进入 “Wait Set”队列。只有当别的线程在该对象上调用了 notify() 或者 notifyAll() ， “ Wait Set”队列中线程才得到机会去竞争，但是只有一个线程获得对象的 Monitor，恢复到运行态。在 “Wait Set”中的线程， DUMP中表现为： in Object.wait()，类似于：</p> <p>&quot;Thread-1&quot; prio=10 tid=0x08223250 nid=0xa in Object.wait() [0xef47a000..0xef47aa38]</p> <p>at java.lang.Object.wait(Native Method)</p> <ul><li>waiting on &lt;0xef63beb8&gt; (a java.util.ArrayList)</li></ul> <p>at java.lang.Object.wait(Object.java:474)</p> <p>at testthread.MyWaitThread.run(MyWaitThread.java:40)</p> <ul><li>locked &lt;0xef63beb8&gt; (a java.util.ArrayList)</li></ul> <p>at java.lang.Thread.run(Thread.java:595)</p> <p>仔细观察上面的 DUMP信息，你会发现它有以下两行：</p> <ul><li><p>locked &lt;0xef63beb8&gt; (a java.util.ArrayList)</p></li> <li><p>waiting on &lt;0xef63beb8&gt; (a java.util.ArrayList)</p></li></ul> <p>这里需要解释一下，为什么先 lock了这个对象，然后又 waiting on同一个对象呢？让我们看看这个线程对应的代码：</p> <p>synchronized(obj) {</p> <p>.........</p> <p>obj.wait();</p> <p>.........</p> <p>}</p> <p>线程的执行中，先用 synchronized 获得了这个对象的 Monitor（对应于 locked &lt;0xef63beb8&gt; ）。当执行到 obj.wait(), 线程即放弃了 Monitor的所有权，进入 “wait set”队列（对应于 waiting on &lt;0xef63beb8&gt; ）。</p> <p>往往在你的程序中，会出现多个类似的线程，他们都有相似的 DUMP信息。这也可能是正常的。比如，在程序中，有多个服务线程，设计成从一个队列里面读取请求数据。这个队列就是 lock以及 waiting on的对象。当队列为空的时候，这些线程都会在这个队列上等待，直到队列有了数据，这些线程被 Notify，当然只有一个线程获得了 lock，继续执行，而其它线程继续等待。</p> <p>综合范例
+综合示范一： Deadlock
+拿到java thread dump后，你要做的就是查找&quot;waiting for monitor entry&quot;的thread，如果大量thread都在等待给同一个地址上锁（因为对于Java，一个对象只有一把锁），这说明很可能死锁发生了。比如：</p> <p>&quot;service-j2ee&quot; prio=5 tid=0x024f1c28 nid=0x125 waiting for monitor entry</p> <p>[62a3e000..62a3f690]</p> <p>[27/Jun/2006:10:03:08] WARNING (26140): CORE3283: stderr: at</p> <p>com.sun.enterprise.resource.IASNonSharedResourcePool.internalGetResource(IASNonS</p> <p>haredResourcePool.java:625)</p> <p>[27/Jun/2006:10:03:08] WARNING (26140): CORE3283: stderr: - waiting to</p> <p>lock &lt;0x965d8110&gt; (a com.sun.enterprise.resource.IASNonSharedResourcePool)</p> <p>[27/Jun/2006:10:03:08] WARNING (26140): CORE3283: stderr: at</p> <p>com.sun.enterprise.resource.IASNonSharedResourcePool.getResource(IASNonSharedRes</p> <p>ourcePool.java:520)</p> <p>................</p> <p>为了确定问题，常常需要在隔两分钟后再次收集一次thread dump，如果得到的输出相同，仍然是大量thread都在等待给同一个地址上锁，那么肯定是死锁了。</p> <p>如何找到当前持有锁的线程是解决问题的关键。方法是搜索thread dump，查找&quot;locked &lt;0x965d8110&gt;&quot;， 找到持有锁的线程。</p> <p>[27/Jun/2006:10:03:08] WARNING (26140): CORE3283: stderr: &quot;Thread-20&quot; daemon prio=5 tid=0x01394f18</p> <p>nid=0x109 runnable [6716f000..6716fc28]</p> <p>[27/Jun/2006:10:03:08] WARNING (26140): CORE3283: stderr: at</p> <p>java.net.SocketInputStream.socketRead0(Native Method)</p> <p>[27/Jun/2006:10:03:08] WARNING (26140): CORE3283: stderr: at</p> <p>java.net.SocketInputStream.read(SocketInputStream.java:129)</p> <p>[27/Jun/2006:10:03:08] WARNING (26140): CORE3283: stderr: at oracle.net.ns.Packet.receive(Unknown</p> <p>Source)</p> <p>[27/Jun/2006:10:03:08] WARNING (26140): CORE3283: stderr: a</p> <p>oracle.net.ns.DataPacket.receive(Unknown Source)</p> <p>[27/Jun/2006:10:03:08] WARNING (26140): CORE3283: stderr: at</p> <p>oracle.net.ns.NetInputStream.getNextPacket(Unknown Source)</p> <p>[27/Jun/2006:10:03:08] WARNING (26140): CORE3283: stderr: at</p> <p>oracle.net.ns.NetInputStream.read(Unknown Source)</p> <p>[27/Jun/2006:10:03:08] WARNING (26140): CORE3283: stderr: at</p> <p>oracle.net.ns.NetInputStream.read(Unknown Source)</p> <p>[27/Jun/2006:10:03:08] WARNING (26140): CORE3283: stderr: a</p> <p>oracle.net.ns.NetInputStream.read(Unknown Source)</p> <p>[27/Jun/2006:10:03:08] WARNING (26140): CORE3283: stderr: at</p> <p>oracle.jdbc.ttc7.MAREngine.unmarshalUB1(MAREngine.java:929)</p> <p>[27/Jun/2006:10:03:08] WARNING (26140): CORE3283: stderr: at</p> <p>oracle.jdbc.ttc7.MAREngine.unmarshalSB1(MAREngine.java:893)</p> <p>[27/Jun/2006:10:03:08] WARNING (26140): CORE3283: stderr: at</p> <p>oracle.jdbc.ttc7.Ocommoncall.receive(Ocommoncall.java:106)</p> <p>[27/Jun/2006:10:03:08] WARNING (26140): CORE3283: stderr: at</p> <p>oracle.jdbc.ttc7.TTC7Protocol.logoff(TTC7Protocol.java:396)</p> <p>[27/Jun/2006:10:03:08] WARNING (26140): CORE3283: stderr: - locked &lt;0x954f47a0&gt; (a</p> <p>oracle.jdbc.ttc7.TTC7Protocol)</p> <p>[27/Jun/2006:10:03:08] WARNING (26140): CORE3283: stderr: at</p> <p>oracle.jdbc.driver.OracleConnection.close(OracleConnection.java:1518)</p> <p>[27/Jun/2006:10:03:08] WARNING (26140): CORE3283: stderr: - locked &lt;0x954f4520&gt; (</p> <p>oracle.jdbc.driver.OracleConnection)</p> <p>[27/Jun/2006:10:03:08] WARNING (26140): CORE3283: stderr: at</p> <p>com.sun.enterprise.resource.JdbcUrlAllocator.destroyResource(JdbcUrlAllocator.java:122)</p> <p>[27/Jun/2006:10:03:08] WARNING (26140): CORE3283: stderr: at</p> <p>com.sun.enterprise.resource.IASNonSharedResourcePool.destroyResource(IASNonSharedResourcePool.java:8</p> <ol start="72"><li></li></ol> <p>[27/Jun/2006:10:03:08] WARNING (26140): CORE3283: stderr: at</p> <p>com.sun.enterprise.resource.IASNonSharedResourcePool.resizePool(IASNonSharedResourcePool.java:1086)</p> <p>[27/Jun/2006:10:03:08] WARNING (26140): CORE3283: stderr: - locked &lt;0x965d8110&gt; (a</p> <p>com.sun.enterprise.resource.IASNonSharedResourcePool)</p> <p>[27/Jun/2006:10:03:08] WARNING (26140): CORE3283: stderr: at</p> <p>com.sun.enterprise.resource.IASNonSharedResourcePool$Resizer.run(IASNonSharedResourcePool.java:1178)</p> <p>[27/Jun/2006:10:03:08] WARNING (26140): CORE3283: stderr: at</p> <p>java.util.TimerThread.mainLoop(Timer.java:432)</p> <p>[27/Jun/2006:10:03:08] WARNING (26140): CORE3283: stderr: at</p> <p>java.util.TimerThread.run(Timer.java:382)</p> <p>在这个例子里，持有锁的线程在等待Oracle返回结果，却始终等不到响应，因此发生了死锁。</p> <p>如果持有锁的线程还在等待给另一个对象上锁，那么还是按上面的办法顺藤摸瓜，直到找到死锁的根源为止。</p> <p>注：第一行里&quot;service-j2ee&quot;是 Thread Name 。tid指Java Thread id。nid指native线程的id。prio是线程优先级。[62a3e000..62a3f690]是线程栈起始地址。</p> <p>综合示范二：Waiting to lock 和 Blocked
+&quot;RMI TCP Connection(267865)-172.16.5.25&quot; daemon prio=10 tid=0x00007fd508371000 nid=0x55ae waiting for monitor entry [0x00007fd4f8684000]
+java.lang.Thread.State: BLOCKED (on object monitor)
+at org.apache.log4j.Category.callAppenders(Category.java:201)</p> <ul><li>waiting to lock &lt;0x00000000acf4d0c0&gt; (a org.apache.log4j.Logger)
+at org.apache.log4j.Category.forcedLog(Category.java:388)
+at org.apache.log4j.Category.log(Category.java:853)
+at org.apache.commons.logging.impl.Log4JLogger.warn(Log4JLogger.java:234)
+at com.tuan.core.common.lang.cache.remote.SpyMemcachedClient.get(SpyMemcachedClient.java:110)
+……
+1）线程状态是 Blocked，阻塞状态。说明线程等待资源超时！
+2）“ waiting to lock &lt;0x00000000acf4d0c0&gt;”指，线程在等待给这个 0x00000000acf4d0c0 地址上锁。
+3）在 dump 日志里查找字符串 0x00000000acf4d0c0，发现有大量线程都在等待给这个地址上锁。如果能在日志里找到谁获得了这个锁（如locked &lt; 0x00000000acf4d0c0 &gt;），就可以顺藤摸瓜了。
+4）“waiting for monitor entry”说明此线程通过 synchronized(obj) {……} 申请进入了临界区，从而进入了上图1中的“Entry Set”队列，但该 obj 对应的 monitor 被其他线程拥有，所以本线程在 Entry Set 队列中等待。
+综合示范三：Waiting on condition 和 TIMED_WAITING
+&quot;RMI TCP Connection(idle)&quot; daemon prio=10 tid=0x00007fd50834e800 nid=0x56b2 waiting on condition [0x00007fd4f1a59000]
+java.lang.Thread.State: TIMED_WAITING (parking)
+at sun.misc.Unsafe.park(Native Method)</li> <li>parking to wait for  &lt;0x00000000acd84de8&gt; (a java.util.concurrent.SynchronousQueue$TransferStack)
+at java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:198)
+at java.util.concurrent.SynchronousQueue$TransferStack.awaitFulfill(SynchronousQueue.java:424)
+at java.util.concurrent.SynchronousQueue$TransferStack.transfer(SynchronousQueue.java:323)
+at java.util.concurrent.SynchronousQueue.poll(SynchronousQueue.java:874)
+at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:945)
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:907)
+at java.lang.Thread.run(Thread.java:662)
+1）“TIMED_WAITING (parking)”中的 timed_waiting 指等待状态，但这里指定了时间，到达指定的时间后自动退出等待状态；parking指线程处于挂起中。
+2）“waiting on condition”需要与堆栈中的“parking to wait for  &lt;0x00000000acd84de8&gt; (a java.util.concurrent.SynchronousQueue$TransferStack)”结合来看。首先，本线程肯定是在等待某个条件的发生，来把自己唤醒。其次，SynchronousQueue 并不是一个队列，只是线程之间移交信息的机制，当我们把一个元素放入到 SynchronousQueue 中时必须有另一个线程正在等待接受移交的任务，因此这就是本线程在等待的条件。
+综合示范四：in Obejct.wait() 和 TIMED_WAITING</li></ul> <p>&quot;RMI RenewClean-[172.16.5.19:28475]&quot; daemon prio=10 tid=0x0000000041428800 nid=0xb09 in Object.wait() [0x00007f34f4bd0000]
+java.lang.Thread.State: TIMED_WAITING (on object monitor)
+at java.lang.Object.wait(Native Method)</p> <ul><li>waiting on &lt;0x00000000aa672478&gt; (a java.lang.ref.ReferenceQueue$Lock)
+at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:118)</li> <li>locked &lt;0x00000000aa672478&gt; (a java.lang.ref.ReferenceQueue$Lock)
+at sun.rmi.transport.DGCClient$EndpointEntry$RenewCleanThread.run(DGCClient.java:516)
+at java.lang.Thread.run(Thread.java:662)
+1）“TIMED_WAITING (on object monitor)”，对于本例而言，是因为本线程调用了 java.lang.Object.wait(long timeout) 而进入等待状态。
+2）“Wait Set”中等待的线程状态就是“ in Object.wait() ”。当线程获得了 Monitor，进入了临界区之后，如果发现线程继续运行的条件没有满足，它则调用对象（一般就是被 synchronized 的对象）的 wait() 方法，放弃了 Monitor，进入 “Wait Set”队列。只有当别的线程在该对象上调用了 notify() 或者 notifyAll() ，“ Wait Set”队列中线程才得到机会去竞争，但是只有一个线程获得对象的 Monitor，恢复到运行态。
+3）RMI RenewClean 是 DGCClient 的一部分。DGC指的是 Distributed GC，即分布式垃圾回收。
+4）从堆栈信息看，是正在清理 remote references to remote objects ，引用的租约到了，分布式垃圾回收在逐一清理呢。
+具体实例
+根据以上分析：</li></ul> <p>每个 Monitor在某个时刻，只能被一个线程拥有，该线程就是 “Active Thread”，而其它线程都是 “Waiting Thread”，分别在两个队列 “ Entry Set”和 “Wait Set”里面等候。</p> <p>在 “ Entry Set”里面的线程都等待拿到Monitor，拿到了线程就成为了Runnable线程，否则就会一直处于处于 “waiting for monitor entry”。以下一段代码作为例子：</p> <p>public class MyThread implements Runnable{</p> <pre><code> public void run() {
+
+     synchronized(this) {
+
+          for (int i = 0; i &lt; 1; i--) {
+
+               System.out.println(Thread.currentThread().getName() + &quot; synchronized loop &quot; + i);
+
+          }
+
+     }
+
+}
+
+public static void main(String[] args) {
+
+    MyThread t1 = new MyThread();
+
+     Thread ta = new Thread(t1, &quot;A&quot;);
+
+     Thread tb = new Thread(t1, &quot;B&quot;);
+
+     ta.start();
+
+     tb.start();
+
+}
+</code></pre> <p>}</p> <p>从代码我们可以看出，B线程肯定是永远拿不到Monitor了。</p> <p>在linux系统环境下运行，使用 ps -ef | grep java 获取执行该代码的进程号，然后使用JDK自带工具jstak生成dump文件，如下图所示：</p> <p>此时，就会将dump文件输出到当前目录，并以a.txt命名，以下是内容：</p> <p>&quot;B&quot; prio=10 tid=0x0969a000 nid=0x11d6 waiting for monitor entry [0x8bb22000]
+java.lang.Thread.State: BLOCKED (on object monitor)
+at org.marshal.MyThread.run(MyThread.java:7)
+- waiting to lock &lt;0x94757078&gt; (a org.marshal.MyThread)
+at java.lang.Thread.run(Thread.java:636)</p> <p>&quot;A&quot; prio=10 tid=0x09698800 nid=0x11d5 runnable [0x8bb73000]
+java.lang.Thread.State: RUNNABLE
+at java.io.FileOutputStream.writeBytes(Native Method)
+at java.io.FileOutputStream.write(FileOutputStream.java:297)
+at java.io.BufferedOutputStream.flushBuffer(BufferedOutputStream.java:82)
+at java.io.BufferedOutputStream.flush(BufferedOutputStream.java:140)
+- locked &lt;0x947571b0&gt; (a java.io.BufferedOutputStream)
+at java.io.PrintStream.write(PrintStream.java:449)
+- locked &lt;0x94757190&gt; (a java.io.PrintStream)
+at sun.nio.cs.StreamEncoder.writeBytes(StreamEncoder.java:220)
+at sun.nio.cs.StreamEncoder.implFlushBuffer(StreamEncoder.java:290)
+at sun.nio.cs.StreamEncoder.flushBuffer(StreamEncoder.java:103)
+- locked &lt;0x947572a0&gt; (a java.io.OutputStreamWriter)
+at java.io.OutputStreamWriter.flushBuffer(OutputStreamWriter.java:185)
+at java.io.PrintStream.write(PrintStream.java:494)
+- locked &lt;0x94757190&gt; (a java.io.PrintStream)
+at java.io.PrintStream.print(PrintStream.java:636)
+at java.io.PrintStream.println(PrintStream.java:773)
+- locked &lt;0x94757190&gt; (a java.io.PrintStream)
+at org.marshal.MyThread.run(MyThread.java:8)
+- locked &lt;0x94757078&gt; (a org.marshal.MyThread)
+at java.lang.Thread.run(Thread.java:636)</p> <p>&lt;0x94757078&gt; 就是两个线程争夺的Monitor。</p> <p>在 “Wait Set”里面的线程都如饥似渴地等待拿到Monitor。他们是怎么进入到“Wait Set”的呢？当一个线程拿到了Monitor，但是在其他资源没有到位的情况下，调用同步锁对象（一般是synchronized()内的对象）的 wait() 方法，放弃了 Monitor，它就进入到了 “Wait Set”队列。只有当其他线程通过notify() 或者 notifyAll()，释放了同步锁后，这个线程才会有机会重新去竞争Monitor。在stack中，它表现的状态是in Object.wait()。修改上面的代码如下：</p> <pre><code> public void run() {
+
+    synchronized(this) {
+
+        try {
+
+            this.wait();
+
+        } catch (InterruptedException e) {
+
+            // TODO Auto-generated catch block
+
+            e.printStackTrace();
+
+        }
+
+    }
+</code></pre> <p>}</p> <p>public static void main(String[] args) {</p> <pre><code>    WaitThread t1 = new WaitThread();
+
+    Thread ta = new Thread(t1, &quot;A&quot;);
+
+    Thread tb = new Thread(t1, &quot;B&quot;);
+
+    ta.start();
+
+    tb.start();
+</code></pre> <p>}</p> <p>}</p> <p>以相同的方法获得dump文件，内容如下：</p> <p>&quot;B&quot; prio=10 tid=0x08173000 nid=0x1304 in Object.wait() [0x8baf2000]
+java.lang.Thread.State: WAITING (on object monitor)
+at java.lang.Object.wait(Native Method)
+- waiting on &lt;0xa9cb50e0&gt; (a org.marshal.WaitThread)
+at java.lang.Object.wait(Object.java:502)
+at org.marshal.WaitThread.run(WaitThread.java:8)
+- locked &lt;0xa9cb50e0&gt; (a org.marshal.WaitThread)
+at java.lang.Thread.run(Thread.java:636)</p> <p>&quot;A&quot; prio=10 tid=0x08171c00 nid=0x1303 in Object.wait() [0x8bb43000]
+java.lang.Thread.State: WAITING (on object monitor)
+at java.lang.Object.wait(Native Method)
+- waiting on &lt;0xa9cb50e0&gt; (a org.marshal.WaitThread)
+at java.lang.Object.wait(Object.java:502)
+at org.marshal.WaitThread.run(WaitThread.java:8)
+- locked &lt;0xa9cb50e0&gt; (a org.marshal.WaitThread)
+at java.lang.Thread.run(Thread.java:636)</p> <p>A和B线程都进入了”wait set“。B线程也拿到过这个Monitor，因为A线程释放过了，这也验证上面的话，他们都在等待得而复失的&lt;0xa9cb50e0&gt;。</p> <p>基于我们经常讨论到的死锁问题，构造一段代码如下</p> <p>public class DeadThread implements Runnable{</p> <pre><code>private Object monitor_A = new Object();
+
+private Object monitor_B = new Object();
+
+public void  method_A(){
+
+     synchronized(monitor_A) {
+
+           synchronized(monitor_B) {
+
+               System.out.println(Thread.currentThread().getName()+&quot; invoke method A&quot;);
+
+           }
+
+       }
+
+}
+
+public void  method_B(){
+
+     synchronized(monitor_B) {
+
+           synchronized(monitor_A) {
+
+               System.out.println(Thread.currentThread().getName()+&quot; invoke method B&quot;);
+
+           }
+
+       }
+
+}
+
+public void run() {
+
+    for(int i=0;i&lt;1;i--){
+
+        method_A();
+
+        method_B();
+
+    }
+
+}
+</code></pre> <p>public static void main(String[] args) {</p> <pre><code>  DeadThread t1 = new DeadThread();
+
+   Thread ta = new Thread(t1, &quot;A&quot;);
+
+   Thread tb = new Thread(t1, &quot;B&quot;);
+
+   ta.start();
+
+   tb.start();
+</code></pre> <p>}</p> <p>}</p> <p>对应的dump：</p> <p>&quot;B&quot; prio=10 tid=0x0898d000 nid=0x269a waiting for monitor entry [0x8baa2000]
+java.lang.Thread.State: BLOCKED (on object monitor)
+at org.marshal.DeadThread.method_A(DeadThread.java:11)
+- waiting to lock &lt;0xaa4d6f88&gt; (a java.lang.Object)
+- locked &lt;0xaa4d6f80&gt; (a java.lang.Object)
+at org.marshal.DeadThread.run(DeadThread.java:28)
+at java.lang.Thread.run(Thread.java:636)</p> <p>&quot;A&quot; prio=10 tid=0x0898b800 nid=0x2699 waiting for monitor entry [0x8baf3000]
+java.lang.Thread.State: BLOCKED (on object monitor)
+at org.marshal.DeadThread.method_B(DeadThread.java:19)
+- waiting to lock &lt;0xaa4d6f80&gt; (a java.lang.Object)
+- locked &lt;0xaa4d6f88&gt; (a java.lang.Object)
+at org.marshal.DeadThread.run(DeadThread.java:29)
+at java.lang.Thread.run(Thread.java:636)</p> <p>同时注意到，在stack trace尾部信息：</p> <h1 id="found-one-java-level-deadlock"><a href="#found-one-java-level-deadlock" aria-hidden="true" class="header-anchor">#</a> Found one Java-level deadlock:</h1> <p>&quot;B&quot;:
+waiting to lock monitor 0x089615d8 (object 0xaa4d6f88, a java.lang.Object),
+which is held by &quot;A&quot;
+&quot;A&quot;:
+waiting to lock monitor 0x08962258 (object 0xaa4d6f80, a java.lang.Object),
+which is held by &quot;B&quot;</p> <h1 id="java-stack-information-for-the-threads-listed-above"><a href="#java-stack-information-for-the-threads-listed-above" aria-hidden="true" class="header-anchor">#</a> Java stack information for the threads listed above:</h1> <p>&quot;B&quot;:
+at org.marshal.DeadThread.method_A(DeadThread.java:11)
+- waiting to lock &lt;0xaa4d6f88&gt; (a java.lang.Object)
+- locked &lt;0xaa4d6f80&gt; (a java.lang.Object)
+at org.marshal.DeadThread.run(DeadThread.java:28)
+at java.lang.Thread.run(Thread.java:636)
+&quot;A&quot;:
+at org.marshal.DeadThread.method_B(DeadThread.java:19)
+- waiting to lock &lt;0xaa4d6f80&gt; (a java.lang.Object)
+- locked &lt;0xaa4d6f88&gt; (a java.lang.Object)
+at org.marshal.DeadThread.run(DeadThread.java:29)
+at java.lang.Thread.run(Thread.java:636)</p> <p>Found 1 deadlock.</p> <p>stack中直接报告了Java级别的死锁。</p> <p>也许这样直接看dump文件不太直观，建议使用ibm的javacode分析工具（附件）进行分析，如，以上会发生死锁的代码产生的dump文件放入到分析工具中显示如下：</p> <p><img src="/img/state.jpg" alt=""></p> <p>从图形界面我们更加容易定位问题，具体该工具的使用需要大家自己查找资料还有自己积累。</p> <p>附件：javacode udmp 分析工具（执行 java -jar jca.jar即可打开）    jca.jar</p> <p>参考资料：</p> <p>http://www.cnblogs.com/zhengyun_ustc/archive/2013/03/18/tda.html</p> <p>http://www.cnblogs.com/zhengyun_ustc/archive/2013/01/06/dumpanalysis.html</p> <p>http://www.linuxidc.com/Linux/2009-01/18171p2.htm</p> <p>http://sesame.iteye.com/blog/428012</p></div> <!----> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated: </span> <span class="time">12/12/2019, 6:23:10 PM</span></div></footer> <!----> </main> <div class="valine-wrapper" data-v-0162251c><div id="valine" data-v-0162251c></div></div></div> <div class="back-to-ceiling" style="right:1rem;bottom:3rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;background-color:rgba(231, 234, 241,.5);display:none;" data-v-d0bfeaa4 data-v-d0bfeaa4><i class="iconfont reco-up" data-v-d0bfeaa4></i></div></div></div></div><div class="global-ui"></div></div>
+    <script src="/senlay.github.io/assets/js/app.7b37906d.js" defer></script><script src="/senlay.github.io/assets/js/4.98832570.js" defer></script><script src="/senlay.github.io/assets/js/2.a115eab3.js" defer></script><script src="/senlay.github.io/assets/js/27.93c85aeb.js" defer></script>
+  </body>
+</html>

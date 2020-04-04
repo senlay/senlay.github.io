@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>spring_aop | SENLAY</title>
+    <meta name="description" content="众木成林">
+    <link rel="icon" href="/senlay.github.io/img/logo.ico">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    
+    <link rel="preload" href="/senlay.github.io/assets/css/0.styles.0f315599.css" as="style"><link rel="preload" href="/senlay.github.io/assets/js/app.7b37906d.js" as="script"><link rel="preload" href="/senlay.github.io/assets/js/4.98832570.js" as="script"><link rel="preload" href="/senlay.github.io/assets/js/2.a115eab3.js" as="script"><link rel="preload" href="/senlay.github.io/assets/js/66.b2931912.js" as="script"><link rel="prefetch" href="/senlay.github.io/assets/js/1.2d95be01.js"><link rel="prefetch" href="/senlay.github.io/assets/js/10.e8c7dd8e.js"><link rel="prefetch" href="/senlay.github.io/assets/js/11.4c668a1e.js"><link rel="prefetch" href="/senlay.github.io/assets/js/12.8026e37d.js"><link rel="prefetch" href="/senlay.github.io/assets/js/13.f1a89c80.js"><link rel="prefetch" href="/senlay.github.io/assets/js/14.00e291e2.js"><link rel="prefetch" href="/senlay.github.io/assets/js/15.03f64819.js"><link rel="prefetch" href="/senlay.github.io/assets/js/16.31af0166.js"><link rel="prefetch" href="/senlay.github.io/assets/js/17.fd10f5f7.js"><link rel="prefetch" href="/senlay.github.io/assets/js/18.62e9f76a.js"><link rel="prefetch" href="/senlay.github.io/assets/js/19.3d984c85.js"><link rel="prefetch" href="/senlay.github.io/assets/js/20.63e4e5ce.js"><link rel="prefetch" href="/senlay.github.io/assets/js/21.53f7bcf7.js"><link rel="prefetch" href="/senlay.github.io/assets/js/22.8cf6e2b1.js"><link rel="prefetch" href="/senlay.github.io/assets/js/23.d6484eec.js"><link rel="prefetch" href="/senlay.github.io/assets/js/24.9fcb4b21.js"><link rel="prefetch" href="/senlay.github.io/assets/js/25.8808f7d2.js"><link rel="prefetch" href="/senlay.github.io/assets/js/26.29215ba7.js"><link rel="prefetch" href="/senlay.github.io/assets/js/27.93c85aeb.js"><link rel="prefetch" href="/senlay.github.io/assets/js/28.ae29d7e9.js"><link rel="prefetch" href="/senlay.github.io/assets/js/29.e86d9a5f.js"><link rel="prefetch" href="/senlay.github.io/assets/js/30.65fe68b9.js"><link rel="prefetch" href="/senlay.github.io/assets/js/31.74859d89.js"><link rel="prefetch" href="/senlay.github.io/assets/js/32.78e565f3.js"><link rel="prefetch" href="/senlay.github.io/assets/js/33.7ce698bb.js"><link rel="prefetch" href="/senlay.github.io/assets/js/34.33f95e1d.js"><link rel="prefetch" href="/senlay.github.io/assets/js/35.92c1557d.js"><link rel="prefetch" href="/senlay.github.io/assets/js/36.e683b955.js"><link rel="prefetch" href="/senlay.github.io/assets/js/37.a515cf62.js"><link rel="prefetch" href="/senlay.github.io/assets/js/38.d1e9a811.js"><link rel="prefetch" href="/senlay.github.io/assets/js/39.92fc2c39.js"><link rel="prefetch" href="/senlay.github.io/assets/js/40.cda41d0f.js"><link rel="prefetch" href="/senlay.github.io/assets/js/41.edf05d24.js"><link rel="prefetch" href="/senlay.github.io/assets/js/42.5efd802d.js"><link rel="prefetch" href="/senlay.github.io/assets/js/43.9a0289af.js"><link rel="prefetch" href="/senlay.github.io/assets/js/44.323d7b48.js"><link rel="prefetch" href="/senlay.github.io/assets/js/45.9247e161.js"><link rel="prefetch" href="/senlay.github.io/assets/js/46.917a5998.js"><link rel="prefetch" href="/senlay.github.io/assets/js/47.e728bb43.js"><link rel="prefetch" href="/senlay.github.io/assets/js/48.e88b6285.js"><link rel="prefetch" href="/senlay.github.io/assets/js/49.759b5011.js"><link rel="prefetch" href="/senlay.github.io/assets/js/5.f4a7252a.js"><link rel="prefetch" href="/senlay.github.io/assets/js/50.6f5672bf.js"><link rel="prefetch" href="/senlay.github.io/assets/js/51.707900e4.js"><link rel="prefetch" href="/senlay.github.io/assets/js/52.bcc8ffbd.js"><link rel="prefetch" href="/senlay.github.io/assets/js/53.fd2966e4.js"><link rel="prefetch" href="/senlay.github.io/assets/js/54.b81bbf2d.js"><link rel="prefetch" href="/senlay.github.io/assets/js/55.8eae09b5.js"><link rel="prefetch" href="/senlay.github.io/assets/js/56.ff29ad46.js"><link rel="prefetch" href="/senlay.github.io/assets/js/57.ba08710a.js"><link rel="prefetch" href="/senlay.github.io/assets/js/58.5fb44ed4.js"><link rel="prefetch" href="/senlay.github.io/assets/js/59.cb51b2c3.js"><link rel="prefetch" href="/senlay.github.io/assets/js/6.9fc2c73f.js"><link rel="prefetch" href="/senlay.github.io/assets/js/60.77aaa01c.js"><link rel="prefetch" href="/senlay.github.io/assets/js/61.1c532657.js"><link rel="prefetch" href="/senlay.github.io/assets/js/62.d753eac3.js"><link rel="prefetch" href="/senlay.github.io/assets/js/63.5c80d0e5.js"><link rel="prefetch" href="/senlay.github.io/assets/js/64.21a55747.js"><link rel="prefetch" href="/senlay.github.io/assets/js/65.ea4d1c50.js"><link rel="prefetch" href="/senlay.github.io/assets/js/67.d0fa5d1c.js"><link rel="prefetch" href="/senlay.github.io/assets/js/68.136433b1.js"><link rel="prefetch" href="/senlay.github.io/assets/js/69.a0ab999a.js"><link rel="prefetch" href="/senlay.github.io/assets/js/7.7cfd5da3.js"><link rel="prefetch" href="/senlay.github.io/assets/js/70.d67d915a.js"><link rel="prefetch" href="/senlay.github.io/assets/js/71.9627a47e.js"><link rel="prefetch" href="/senlay.github.io/assets/js/72.9db21b09.js"><link rel="prefetch" href="/senlay.github.io/assets/js/73.5be3e5e2.js"><link rel="prefetch" href="/senlay.github.io/assets/js/74.e1a4a0e5.js"><link rel="prefetch" href="/senlay.github.io/assets/js/75.3d6543b8.js"><link rel="prefetch" href="/senlay.github.io/assets/js/76.700a22b2.js"><link rel="prefetch" href="/senlay.github.io/assets/js/77.6de14174.js"><link rel="prefetch" href="/senlay.github.io/assets/js/78.264d827a.js"><link rel="prefetch" href="/senlay.github.io/assets/js/79.f3f454f0.js"><link rel="prefetch" href="/senlay.github.io/assets/js/8.e6e200a2.js"><link rel="prefetch" href="/senlay.github.io/assets/js/80.80de905d.js"><link rel="prefetch" href="/senlay.github.io/assets/js/81.3f588dd5.js"><link rel="prefetch" href="/senlay.github.io/assets/js/82.cef4373c.js"><link rel="prefetch" href="/senlay.github.io/assets/js/9.2721dc7f.js">
+    <link rel="stylesheet" href="/senlay.github.io/assets/css/0.styles.0f315599.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div><div class="theme-container"><div><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/senlay.github.io/" class="home-link router-link-active"><img src="/senlay.github.io/img/senlay.jpg" alt="SENLAY" class="logo"> <span class="site-name">SENLAY</span></a> <div class="links"><div class="color-picker"><a href="#" class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="theme-options"><!----> <div class="dark-theme-options toggle-option"><label for="dark-theme-toggle">Enable Dark Theme?</label> <input id="dark-theme-toggle" type="checkbox" checked="checked"></div></div></div></div> <div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/senlay.github.io/" class="nav-link"><i class="iconfont undefined"></i>
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      分类
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/扫一扫，加微信.html" class="nav-link"><i class="iconfont undefined"></i>
+  扫一扫，加微信
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/diary.html" class="nav-link"><i class="iconfont undefined"></i>
+  diary
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/conception.html" class="nav-link"><i class="iconfont undefined"></i>
+  conception
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/dva.html" class="nav-link"><i class="iconfont undefined"></i>
+  dva
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/docker.html" class="nav-link"><i class="iconfont undefined"></i>
+  docker
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/java.html" class="nav-link"><i class="iconfont undefined"></i>
+  java
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/flowable.html" class="nav-link"><i class="iconfont undefined"></i>
+  flowable
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/git.html" class="nav-link"><i class="iconfont undefined"></i>
+  git
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/linux.html" class="nav-link"><i class="iconfont undefined"></i>
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/jboss.html" class="nav-link"><i class="iconfont undefined"></i>
+  jboss
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/react.html" class="nav-link"><i class="iconfont undefined"></i>
+  react
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/layui.html" class="nav-link"><i class="iconfont undefined"></i>
+  layui
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/js.html" class="nav-link"><i class="iconfont undefined"></i>
+  js
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/jdbc.html" class="nav-link"><i class="iconfont undefined"></i>
+  jdbc
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/mysql.html" class="nav-link"><i class="iconfont undefined"></i>
+  mysql
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/spring.html" class="nav-link"><i class="iconfont undefined"></i>
+  spring
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/redis.html" class="nav-link"><i class="iconfont undefined"></i>
+  redis
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/vue.html" class="nav-link"><i class="iconfont undefined"></i>
+  vue
+</a></li></ul></div></div><div class="nav-item"><a href="/senlay.github.io/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  标签
+</a></div><div class="nav-item"><a href="/senlay.github.io/timeLine/" class="nav-link"><i class="iconfont reco-date"></i>
+  时间轴
+</a></div><div class="nav-item"><a href="https://vuepress.vuejs.org" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  vuepress
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont undefined"></i>
+      友情链接
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/senlay/senlay.github.io" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://gitee.com/ylbs/dsl" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  gitee
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="http://tool.oschina.net/apidocs/apidoc?api=jdk_7u4" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  jdk-api
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://www.runoob.com/java/java-tutorial.html" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  java
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://cn.vuejs.org/v2/guide/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  vue
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="http://element-ui.cn/#/zh-CN/component/installation" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  element-ui
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://www.w3cschool.cn/wkspring/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  spring
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://www.runoob.com/design-pattern/design-pattern-tutorial.html" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  design-pattern
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></div></div><div class="nav-item"><a href="/senlay.github.io/about/" class="nav-link"><i class="iconfont undefined"></i>
+  关于我
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/senlay.github.io/" class="nav-link"><i class="iconfont undefined"></i>
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      分类
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/扫一扫，加微信.html" class="nav-link"><i class="iconfont undefined"></i>
+  扫一扫，加微信
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/diary.html" class="nav-link"><i class="iconfont undefined"></i>
+  diary
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/conception.html" class="nav-link"><i class="iconfont undefined"></i>
+  conception
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/dva.html" class="nav-link"><i class="iconfont undefined"></i>
+  dva
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/docker.html" class="nav-link"><i class="iconfont undefined"></i>
+  docker
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/java.html" class="nav-link"><i class="iconfont undefined"></i>
+  java
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/flowable.html" class="nav-link"><i class="iconfont undefined"></i>
+  flowable
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/git.html" class="nav-link"><i class="iconfont undefined"></i>
+  git
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/linux.html" class="nav-link"><i class="iconfont undefined"></i>
+  linux
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/jboss.html" class="nav-link"><i class="iconfont undefined"></i>
+  jboss
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/react.html" class="nav-link"><i class="iconfont undefined"></i>
+  react
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/layui.html" class="nav-link"><i class="iconfont undefined"></i>
+  layui
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/js.html" class="nav-link"><i class="iconfont undefined"></i>
+  js
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/jdbc.html" class="nav-link"><i class="iconfont undefined"></i>
+  jdbc
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/mysql.html" class="nav-link"><i class="iconfont undefined"></i>
+  mysql
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/spring.html" class="nav-link"><i class="iconfont undefined"></i>
+  spring
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/redis.html" class="nav-link"><i class="iconfont undefined"></i>
+  redis
+</a></li><li class="dropdown-item"><!----> <a href="/senlay.github.io/category/vue.html" class="nav-link"><i class="iconfont undefined"></i>
+  vue
+</a></li></ul></div></div><div class="nav-item"><a href="/senlay.github.io/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  标签
+</a></div><div class="nav-item"><a href="/senlay.github.io/timeLine/" class="nav-link"><i class="iconfont reco-date"></i>
+  时间轴
+</a></div><div class="nav-item"><a href="https://vuepress.vuejs.org" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  vuepress
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont undefined"></i>
+      友情链接
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/senlay/senlay.github.io" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://gitee.com/ylbs/dsl" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  gitee
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="http://tool.oschina.net/apidocs/apidoc?api=jdk_7u4" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  jdk-api
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://www.runoob.com/java/java-tutorial.html" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  java
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://cn.vuejs.org/v2/guide/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  vue
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="http://element-ui.cn/#/zh-CN/component/installation" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  element-ui
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://www.w3cschool.cn/wkspring/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  spring
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://www.runoob.com/design-pattern/design-pattern-tutorial.html" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  design-pattern
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></div></div><div class="nav-item"><a href="/senlay.github.io/about/" class="nav-link"><i class="iconfont undefined"></i>
+  关于我
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Vue</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Java</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Jboss</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Flowable</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Redis</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>git</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Mysql</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>js</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>layui</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>react+antd由浅入深</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>dva</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>spring</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/senlay.github.io/guide/spring/spring_1.html" class="sidebar-link">spring深入学习</a></li><li><a href="/senlay.github.io/guide/spring/spring_2.html" class="sidebar-link">JDBC事务控制</a></li><li><a href="/senlay.github.io/guide/spring/spring_bean.html" class="sidebar-link">Sring Bean</a></li><li><a href="/senlay.github.io/guide/spring/spring_aop.html" class="active sidebar-link">Sring aop</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>docker</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>springCloud</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>diary</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>conception</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>conception</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <div><main class="page reco-hide"> <div class="page-title"><h1>spring_aop</h1> <hr> <div data-v-0b496ca7><i class="iconfont reco-account" data-v-0b496ca7><span data-v-0b496ca7>senlay</span></i> <i class="iconfont reco-date" data-v-0b496ca7><span data-v-0b496ca7>2019-1-4</span></i> <span id="/senlay.github.io/guide/spring/spring_aop.html" data-flag-title="Your Article Title" class="leancloud-visitors" data-v-2e99e05a data-v-0b496ca7><i class="iconfont reco-eye" style="margin-right: .5rem" data-v-2e99e05a></i> <a class="leancloud-visitors-count" style="font-size:.9rem;font-weight:normal;color:#999;" data-v-2e99e05a></a></span> <i class="iconfont reco-tag tags" data-v-0b496ca7><span class="tag-item" data-v-0b496ca7>
+      node
+    </span></i></div></div> <div class="content__default"><h4 id="spring-aop"><a href="#spring-aop" aria-hidden="true" class="header-anchor">#</a> spring aop</h4> <blockquote><p>aop 面向切面编程，动态的将业务逻辑进行横向切分，无任何侵入。比较好的例子有：日志记录、权限拦截、声明式事务等。
+日常开发中，我们经常会面临些各式各样的问题，比如：为了应对购物狂欢节对系统进行压力测试以便找到系统所能承受的最大压力和瓶颈，进而
+找出影响系统性能问题的原因。那么，进行压力测试我们势必要对整个系统进行代码修改，以符合压测环境的各项标准。
+就单系统而言，如果进行压测，假设我们直接在控制层加段开关逻辑，不进行资源处理也可以实现，虽然看起来难看但也可以实现。
+那么，如果是分布式系统，这样操作势必会让开发人员头皮发麻，而且冒得风险也比较大。对于这种情况，我们不想直接修改代码，想以更优雅的方式
+绕过一些资源处理，就可以采用AOP。我们可以对资源处理的类进行集中式的切面管理，直接绕过，并且可以通过配置的方式，类似U盘插拔一样。
+AOP让你可以使用简单可插拔的配置，在实际逻辑执行之前、之后或周围动态添加横切关注点。这让代码在当下和将来都变得易于维护。如果你是使用XML来使用切面的话，要添加或删除关注点，你不用重新编译完整的源代码，而仅仅需要修改配置文件就可以了。
+Spring AOP通过以下两种方式来使用。但是最广泛使用的方式是Spring AspectJ 注解风格(Spring AspectJ Annotation Style)</p></blockquote> <ul><li>使用AspectJ 注解风格</li> <li>使用Spring XML 配置风格</li></ul> <h5 id="spring-aop中关注点和横切关注点有什么不同？"><a href="#spring-aop中关注点和横切关注点有什么不同？" aria-hidden="true" class="header-anchor">#</a> Spring AOP中关注点和横切关注点有什么不同？</h5> <ul><li>关注点是我们想在应用的模块中实现的行为，更多侧重的关注的行为</li></ul> <blockquote><p>关注点可以被定义为：我们想实现以解决特定业务问题的方法。比如，在所有电子商务应用中，不同的关注点（或者模块）可能是库存管理、航运管理、用户管理等。</p></blockquote> <ul><li>横切关注点是贯穿整个应用程序的关注点</li></ul> <blockquote><p>例如：日志、安全和数据转换，它们在应用的每一个模块都是必须的，所以他们是一种横切关注点。</p></blockquote> <h5 id="spring-aop-代理是什么？"><a href="#spring-aop-代理是什么？" aria-hidden="true" class="header-anchor">#</a> spring AOP 代理是什么？</h5> <blockquote><p>spring aop 是基于代理实现的，AOP 代理是一个由 AOP 框架创建的用于在运行时实现切面协议的对象。spring aop默认基于JDK动态代理实现，如果一个业务对象没有实现任何接口那么默认为CJLIB</p></blockquote> <h5 id="aop常用api"><a href="#aop常用api" aria-hidden="true" class="header-anchor">#</a> AOP常用api</h5> <table><thead><tr><th>项</th> <th>描述</th></tr></thead> <tbody><tr><td>Aspect</td> <td>一个模块具有一组提供横切需求的 APIs。例如，一个日志模块为了记录日志将被 AOP 方面调用。应用程序可以拥有任意数量的方面，这取决于需求</td></tr> <tr><td>join Point</td> <td>切面点，可以是一个方法 ,在 Spring AOP 中，一个连接点总是代表一个方法执行</td></tr> <tr><td>Advice</td> <td>这是实际行动之前或之后执行的方法。这是在程序执行期间通过 Spring AOP 框架实际被调用的代码。</td></tr> <tr><td>Pointcut</td> <td>这是一组一个或多个连接点，通知应该被执行。切入点(切入点)是一个匹配连接点的断言或者表达式。如@Pointcut(&quot;@annotation(com.pace.annotation.LoveForest)&quot;)。</td></tr> <tr><td>Introduction</td> <td>引用允许你添加新方法或属性到现有的类中。</td></tr> <tr><td>Target object</td> <td>被一个或者多个方面所通知的对象，这个对象永远是一个被代理对象。也称为被通知对象。</td></tr> <tr><td>Weaving（织入）</td> <td>Weaving 把方面连接到其它的应用程序类型或者对象上，并创建一个被通知的对象。这些可以在编译时，类加载时和运行时完成。</td></tr></tbody></table> <h5 id="通知的类型"><a href="#通知的类型" aria-hidden="true" class="header-anchor">#</a> 通知的类型</h5> <table><thead><tr><th>通知</th> <th>描述</th></tr></thead> <tbody><tr><td>前置通知 before advice</td> <td>在一个方法执行之前，执行通知。</td></tr> <tr><td>环绕通知 around advice</td> <td>也叫增强通知，在建议方法调用之前和之后，执行通知</td></tr> <tr><td>后置通知 after advice</td> <td>在一个方法执行之后，不考虑其结果，执行通知</td></tr> <tr><td>异常通知 After Throwing Advice</td> <td>在一个方法执行之后，只有在方法退出抛出异常时，才能执行通知。</td></tr> <tr><td>返回后通知 after return advice</td> <td>在一个方法执行之后，只有在方法成功完成时，才能执行通知</td></tr></tbody></table> <div class="language- extra-class"><pre class="language-text"><code>package com.pace.aop;
+
+import com.pace.annotation.LoveForest;
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.*;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.util.StringUtils;
+import java.lang.reflect.Method;
+
+@Aspect
+@Configuration
+public class MyAop {
+
+
+    //定义切点方法
+    @Pointcut(&quot;@annotation(com.pace.annotation.LoveForest)&quot;)
+    public void pointCut() {
+    }
+
+//    @Before(&quot;pointCut()&quot;)
+    public void beforeMethod(JoinPoint joinPoint) {
+        System.out.println(&quot;before method   start ...&quot;+joinPoint.toString());
+
+        System.out.println(&quot;before method   end ...&quot;);
+    }
+
+
+
+    /**
+     * 环绕通知 around advice
+     * 这个切的是 com.pace.service 包下面以及子包下所有，后面又 &amp;&amp; 同时满足带有注解 loveForest
+     */
+    @Around(value = &quot;pointCut() &amp;&amp; @annotation(loveForest)&quot;, argNames = &quot;joinPoint, loveForest&quot;)
+    public Object methodAround(ProceedingJoinPoint joinPoint, LoveForest loveForest) throws Throwable {
+        System.out.println(&quot;Around method    start.......................&quot;);
+        //获得自定义注解的参数
+        System.out.println(&quot;Around method  methodLog 的参数，remark：&quot; + loveForest.value() + &quot; key：&quot; + loveForest.key());
+        //执行目标方法，并获得对应方法的返回值
+        Object result = joinPoint.proceed();
+        System.out.println(&quot;Around method     返回结果：&quot; + result);
+        System.out.println(&quot;Around method          end.......................&quot;);
+        return result;
+    }
+
+
+    /**
+     * 最终通知 after advice
+     * 使用的是在上面声明的切面，并且带上个注解，意思是除了满足上面pointCut()方法的条件还得带上注解才OK
+     */
+//    @After(value = &quot;pointCut() &amp;&amp; @annotation(loveForest)&quot;, argNames = &quot;joinPoint, loveForest&quot;)
+    public void methodAfter(JoinPoint joinPoint, LoveForest loveForest) throws Throwable {
+        System.out.println(&quot;After method     start.......................&quot;);
+        //获得自定义注解的参数
+        System.out.println(&quot;After method   methodLog 的参数，remark：&quot; + loveForest.value() + &quot; key：&quot; + loveForest.key());
+        LoveForest remark = getMethodRemark(joinPoint);
+        System.out.println(&quot;After method        end.......................&quot;+remark);
+    }
+
+    /**
+     * 获取方法的中文备注____用于记录用户的操作日志描述
+     */
+    private LoveForest getMethodRemark(JoinPoint joinPoint) throws Exception {
+        //返回目标对象
+        Object target = joinPoint.getTarget();
+        String targetName = target.getClass().getName();
+        //返回当前连接点签名
+        String methodName = joinPoint.getSignature().getName();
+        //获得参数列表
+        Object[] arguments = joinPoint.getArgs();
+
+        Class targetClass = Class.forName(targetName);
+        Method[] method = targetClass.getMethods();
+        for (Method m : method) {
+            if (m.getName().equals(methodName)) {
+                Class[] tmpCs = m.getParameterTypes();
+                if (tmpCs.length == arguments.length) {
+                    LoveForest methodCache = m.getAnnotation(LoveForest.class);
+                    if (methodCache != null &amp;&amp; !StringUtils.isEmpty(methodCache)) {
+                        return methodCache;
+                    }
+                    break;
+                }
+            }
+        }
+        return null;
+    }
+
+
+    /**
+     * 后置异常通知
+     */
+//    @AfterThrowing(&quot;pointCut()&quot;)
+    public void afterThrows(JoinPoint jp){
+        System.out.println(&quot;方法异常时执行.....&quot;);
+    }
+
+
+}
+
+
+</code></pre></div></div> <!----> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated: </span> <span class="time">1/4/2020, 6:28:25 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/senlay.github.io/guide/spring/spring_bean.html" class="prev">
+          Sring Bean
+        </a></span> <span class="next"><a href="/senlay.github.io/guide/docker/docker.html">
+          docker学习
+        </a>
+        →
+      </span></p></div> </main> <div class="valine-wrapper" data-v-0162251c><div id="valine" data-v-0162251c></div></div></div> <div class="back-to-ceiling" style="right:1rem;bottom:3rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;background-color:rgba(231, 234, 241,.5);display:none;" data-v-d0bfeaa4 data-v-d0bfeaa4><i class="iconfont reco-up" data-v-d0bfeaa4></i></div></div></div></div><div class="global-ui"></div></div>
+    <script src="/senlay.github.io/assets/js/app.7b37906d.js" defer></script><script src="/senlay.github.io/assets/js/4.98832570.js" defer></script><script src="/senlay.github.io/assets/js/2.a115eab3.js" defer></script><script src="/senlay.github.io/assets/js/66.b2931912.js" defer></script>
+  </body>
+</html>
