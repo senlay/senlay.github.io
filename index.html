@@ -1,76 +1,72 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>SENLAY</title>
-    <meta name="description" content="SENLAY 的个人博客，记录技术与生活。" />
-    <meta name="theme-color" content="#2563eb" />
-    <link rel="icon" href="/img/logo.ico" />
-    <link rel="stylesheet" href="/assets/css/site-lite.css" />
-  </head>
-  <body>
-    <header class="site-header">
-      <div class="container nav-row">
-        <a class="brand" href="/" aria-label="SENLAY home">
-          <span class="brand-mark">S</span>
-          <span>SENLAY</span>
-        </a>
-        <nav class="site-nav" aria-label="Main navigation">
-          <a href="/">首页</a>
-          <a href="/about/">关于</a>
-          <a href="/category/">分类</a>
-          <a href="/tag/">标签</a>
-          <a href="https://github.com/senlay" target="_blank" rel="noopener noreferrer">GitHub</a>
-        </nav>
-      </div>
-    </header>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SENLAY</title>
+  <meta name="description" content="SENLAY 个人博客，记录技术和生活。">
+  <meta name="theme-color" content="#2563eb">
+  <link rel="icon" href="/img/logo.ico">
+  <link rel="stylesheet" href="/assets/css/site-lite.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container nav">
+      <a class="brand" href="/">SENLAY</a>
+      <nav class="menu" aria-label="主导航">
+        <a href="/">首页</a>
+        <a href="/about/">关于</a>
+        <a href="/category/">分类</a>
+        <a href="/tag/">标签</a>
+        <a href="https://github.com/senlay" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </nav>
+    </div>
+  </header>
 
-    <main class="container main">
-      <section class="hero">
-        <div class="hero-text">
-          <p class="eyebrow">个人技术博客</p>
-          <h1>众木成林</h1>
-          <p class="lead">记录技术、运维、和学习中的积累。以清晰、稳定、实用为原则，保持博客轻快更新。</p>
-          <div class="cta-row">
-            <a class="btn primary" href="/category/">查看分类</a>
-            <a class="btn" href="/about/">关于我</a>
-          </div>
+  <main class="container main">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">PERSONAL BLOG</p>
+        <h1>众木成林</h1>
+        <p>记录技术、学习和生活中的积累。这里用最轻量的方式保留可回顾的经验。</p>
+        <div class="actions">
+          <a class="btn primary" href="/category/">分类</a>
+          <a class="btn" href="/about/">关于</a>
         </div>
-
-        <aside class="stats-panel">
-          <div class="stat-item"><span>方向</span><strong>Java / Web / Ops</strong></div>
-          <div class="stat-item"><span>主题</span><strong>技术 & 生活</strong></div>
-          <div class="stat-item"><span>状态</span><strong>持续更新</strong></div>
-        </aside>
-      </section>
-
-      <section class="cards">
-        <article class="card">
-          <span class="tag">Java</span>
-          <h3>Java 实战</h3>
-          <p>服务治理、部署、性能与稳定性总结。</p>
-        </article>
-        <article class="card">
-          <span class="tag">Linux</span>
-          <h3>运维笔记</h3>
-          <p>环境搭建、脚本管理和常见排查经验。</p>
-        </article>
-        <article class="card">
-          <span class="tag">Frontend</span>
-          <h3>Vue / React / JS</h3>
-          <p>组件、工程化和前端实践整理。</p>
-        </article>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <div class="container footer-row">
-        <span>© <span id="year">2026</span> SENLAY</span>
-        <span>轻快、简洁、持续记录</span>
       </div>
-    </footer>
+      <aside class="panel">
+        <div class="row"><span>方向</span><strong>Java / Web / Ops</strong></div>
+        <div class="row"><span>主题</span><strong>技术 & 生活</strong></div>
+        <div class="row"><span>状态</span><strong>持续更新</strong></div>
+      </aside>
+    </section>
 
-    <script defer src="/assets/js/site-lite.js"></script>
-  </body>
+    <section class="cards">
+      <article class="card">
+        <span class="tag">Java</span>
+        <h3>Java 实战</h3>
+        <p>部署、稳定性和工程实践整理。</p>
+      </article>
+      <article class="card">
+        <span class="tag">Linux</span>
+        <h3>运维笔记</h3>
+        <p>脚本、排查和环境管理经验。</p>
+      </article>
+      <article class="card">
+        <span class="tag">Frontend</span>
+        <h3>Vue / React</h3>
+        <p>前端笔记与组件实践总结。</p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container foot">
+      <span>© <span id="year">2026</span> SENLAY</span>
+      <span>轻快、纯净、持续记录</span>
+    </div>
+  </footer>
+
+  <script defer src="/assets/js/site-lite.js"></script>
+</body>
 </html>
