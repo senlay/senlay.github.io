@@ -1,20 +1,22 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="zh-CN">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>关于我 | SENLAY</title>
-    <meta name="description" content="关于我，技术与生活记录。" />
+    <meta name="description" content="关于我。" />
     <meta name="theme-color" content="#2563eb" />
     <link rel="icon" href="/img/logo.ico" />
     <link rel="stylesheet" href="/assets/css/site-lite.css" />
-    <script defer src="/assets/js/site-lite.js"></script>
   </head>
   <body>
     <header class="site-header">
-      <div class="container topbar">
-        <a href="/" class="brand"><span class="brand-mark">S</span><span>SENLAY</span></a>
-        <nav class="nav" aria-label="Main navigation">
+      <div class="container nav-row">
+        <a class="brand" href="/" aria-label="SENLAY home">
+          <span class="brand-mark">S</span>
+          <span>SENLAY</span>
+        </a>
+        <nav class="site-nav" aria-label="Main navigation">
           <a href="/">首页</a>
           <a href="/about/">关于</a>
           <a href="/category/">分类</a>
@@ -24,31 +26,26 @@
       </div>
     </header>
 
-    <main class="container" style="padding: 56px 0 48px;">
-      <section class="hero-box" style="padding: 30px 24px;">
-        <div class="hero-copy">
-          <h1 style="margin-bottom: 12px;">关于我</h1>
-          <p>我是一名偏后端/工程实践方向的开发者，热爱写代码、整理经验和持续学习。博客里记录工作中的问题、技术方案和日常思考，用有限的文字沉淀有价值的经验。</p>
-          <div class="hero-actions">
-            <a href="/" class="button">返回首页</a>
+    <main class="container main narrow">
+      <section class="hero static-page">
+        <div class="hero-text">
+          <p class="eyebrow">About</p>
+          <h1>关于我</h1>
+          <p class="lead">我喜欢写代码，也喜欢把经验沉淀下来。这个博客主要用于记录实践、学习和思考，尽量保持简洁和可持续。</p>
+          <div class="cta-row">
+            <a class="btn primary" href="/">返回首页</a>
           </div>
         </div>
-        <aside class="hero-card">
-          <span class="card-label">概况</span>
-          <div class="hero-meta">
-            <div class="meta-row"><span>方向</span><strong>Java / Web / OPS</strong></div>
-            <div class="meta-row"><span>爱好</span><strong>技术、阅读、记录</strong></div>
-            <div class="meta-row"><span>状态</span><strong>持续更新</strong></div>
-          </div>
-        </aside>
       </section>
     </main>
 
-    <footer class="container footer">
-      <div class="footer-inner">
+    <footer class="site-footer">
+      <div class="container footer-row">
         <span>© <span id="year">2026</span> SENLAY</span>
-        <span>记录技术与成长。</span>
+        <span>记录技术与成长</span>
       </div>
     </footer>
+
+    <script defer src="/assets/js/site-lite.js"></script>
   </body>
 </html>

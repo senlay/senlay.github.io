@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="zh-CN">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -8,13 +8,15 @@
     <meta name="theme-color" content="#2563eb" />
     <link rel="icon" href="/img/logo.ico" />
     <link rel="stylesheet" href="/assets/css/site-lite.css" />
-    <script defer src="/assets/js/site-lite.js"></script>
   </head>
   <body>
     <header class="site-header">
-      <div class="container topbar">
-        <a href="/" class="brand"><span class="brand-mark">S</span><span>SENLAY</span></a>
-        <nav class="nav" aria-label="Main navigation">
+      <div class="container nav-row">
+        <a class="brand" href="/" aria-label="SENLAY home">
+          <span class="brand-mark">S</span>
+          <span>SENLAY</span>
+        </a>
+        <nav class="site-nav" aria-label="Main navigation">
           <a href="/">首页</a>
           <a href="/about/">关于</a>
           <a href="/category/">分类</a>
@@ -24,32 +26,26 @@
       </div>
     </header>
 
-    <main class="container" style="padding: 56px 0 48px;">
-      <section class="hero-box" style="padding: 28px 24px;">
-        <div class="hero-copy">
-          <h1 style="margin-bottom: 12px;">分类</h1>
-          <p>这里按主题归档，方便快速查找相关内容，覆盖 Java、Linux、Docker、Vue、React、Git、生活随笔等板块。</p>
-          <div class="hero-actions">
-            <a href="/" class="button">返回首页</a>
+    <main class="container main narrow">
+      <section class="hero static-page">
+        <div class="hero-text">
+          <p class="eyebrow">Categories</p>
+          <h1>分类</h1>
+          <p class="lead">Java、Linux、Docker、Git、Vue、React、生活随笔等内容会按主题归档。</p>
+          <div class="cta-row">
+            <a class="btn primary" href="/">返回首页</a>
           </div>
         </div>
-        <aside class="hero-card">
-          <span class="card-label">目录</span>
-          <div class="hero-meta">
-            <div class="meta-row"><span>Java</span><strong>实践</strong></div>
-            <div class="meta-row"><span>Linux</span><strong>运维</strong></div>
-            <div class="meta-row"><span>Docker</span><strong>容器</strong></div>
-            <div class="meta-row"><span>Vue</span><strong>前端</strong></div>
-          </div>
-        </aside>
       </section>
     </main>
 
-    <footer class="container footer">
-      <div class="footer-inner">
+    <footer class="site-footer">
+      <div class="container footer-row">
         <span>© <span id="year">2026</span> SENLAY</span>
-        <span>按主题收纳知识。</span>
+        <span>按主题收纳知识</span>
       </div>
     </footer>
+
+    <script defer src="/assets/js/site-lite.js"></script>
   </body>
 </html>

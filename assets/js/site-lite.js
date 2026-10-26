@@ -1,6 +1,1 @@
-document.addEventListener('DOMContentLoaded', function () {
-  var yearNode = document.getElementById('year');
-  if (yearNode) {
-    yearNode.textContent = new Date().getFullYear();
-  }
-});
+document.addEventListener('DOMContentLoaded',function(){var y=document.getElementById('year');if(y){y.textContent=new Date().getFullYear();}});
