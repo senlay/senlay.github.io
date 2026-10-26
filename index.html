@@ -2,14 +2,125 @@
 <html lang="en-US">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>SENLAY</title>
-    <meta name="description" content="众木成林">
-    <link rel="icon" href="/img/logo.ico">
-    <meta name="theme-color" content="#4f46e5">
-    <link rel="stylesheet" href="/assets/css/0.styles.0b28c3ba.css">
-    <link rel="stylesheet" href="/assets/css/custom-site.css">
-    <script defer src="/assets/js/site-enhancements.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SENLAY | 个人博客</title>
+    <meta name="description" content="众木成林，随笔与技术记录。" />
+    <meta name="theme-color" content="#2563eb" />
+    <link rel="icon" href="/img/logo.ico" />
+    <link rel="stylesheet" href="/assets/css/site-lite.css" />
+    <script defer src="/assets/js/site-lite.js"></script>
   </head>
   <body>
-    <div id="app" data-server-rendered="true"><div><div class="theme-container no-sidebar"><div><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 24 24" class="icon"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path></svg></div>
+    <header class="site-header">
+      <div class="container topbar">
+        <a href="/" class="brand" aria-label="SENLAY home">
+          <span class="brand-mark">S</span>
+          <span>SENLAY</span>
+        </a>
+        <nav class="nav" aria-label="Main navigation">
+          <a href="/">首页</a>
+          <a href="/about/">关于</a>
+          <a href="/category/">分类</a>
+          <a href="/tag/">标签</a>
+          <a href="https://github.com/senlay" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container hero">
+      <section class="hero-box">
+        <div class="hero-copy">
+          <h1>众木成林</h1>
+          <p>这里记录技术、生活和学习中的点滴。内容偏 Java、Spring、Linux、Docker、Vue、React 与日常经验总结，图轻量、用简洁、以长期积累为主。</p>
+          <div class="hero-actions">
+            <a href="/category/" class="button">查看分类</a>
+            <a href="/about/" class="button secondary">关于我</a>
+          </div>
+        </div>
+
+        <aside class="hero-card">
+          <span class="card-label">个人站</span>
+          <div class="hero-meta">
+            <div class="meta-row"><span>博客主题</span><strong>技术 & 生活</strong></div>
+            <div class="meta-row"><span>技术方向</span><strong>Java / JavaScript / Linux</strong></div>
+            <div class="meta-row"><span>更新状态</span><strong>持续维护</strong></div>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <div class="container content-wrap">
+      <section class="section">
+        <div class="section-head">
+          <h2 class="section-title">精选内容</h2>
+          <a href="/category/" class="link-more">更多分类 →</a>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <div class="card-body">
+              <span class="tag">Java</span>
+              <h3>Java 实战与生产环境部署</h3>
+              <p>整理常见性能、部署与线上问题的处理方案。</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-body">
+              <span class="tag">Linux</span>
+              <h3>运维与部署笔记</h3>
+              <p>记录环境搭建、服务治理和常见脚本实践。</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-body">
+              <span class="tag">Frontend</span>
+              <h3>Vue / React / JS</h3>
+              <p>总结组件设计、工程化、交���体验和前端实践。</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2 class="section-title">最近专题</h2>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <div class="card-body">
+              <span class="tag">Docker</span>
+              <h3>容器化学习笔记</h3>
+              <p>从镜像构建到服务编排，记录常见使用方式与问题排查。</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-body">
+              <span class="tag">Git</span>
+              <h3>开发协作与版本管理</h3>
+              <p>版本控制、分支管理和团队协作实用技巧总结。</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-body">
+              <span class="tag">Life</span>
+              <h3>随笔与成长记录</h3>
+              <p>持续记录工作、学习和思考的积累，让经验可回溯。</p>
+            </div>
+          </article>
+        </div>
+      </section>
+    </div>
+
+    <footer class="container footer">
+      <div class="footer-inner">
+        <span>© <span id="year">2026</span> SENLAY</span>
+        <span>让博客保持轻快、可持续地更新。</span>
+      </div>
+    </footer>
+  </body>
+</html>
